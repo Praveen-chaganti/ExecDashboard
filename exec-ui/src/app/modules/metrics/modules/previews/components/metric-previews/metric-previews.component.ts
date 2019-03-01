@@ -5,9 +5,9 @@ import {ProductionIncidentsConfiguration} from '../../../metrics/production-inci
 import {ProductionReleasesConfiguration} from '../../../metrics/production-releases/production-releases.configuration';
 import {SecurityViolationsConfiguration} from '../../../metrics/security-violations/security-violations.configuration';
 import {StaticCodeAnalysisConfiguration} from '../../../metrics/static-code-analysis/static-code-analysis.configuration';
-import {TestAutomationConfiguration} from '../../../metrics/test-automation/test-automation.configuration';
 import {UnitTestCoverageConfiguration} from '../../../metrics/unit-test-coverage/unit-test-coverage.configuration';
 import {SCMCommitsConfiguration} from '../../../metrics/scm-commits/scm-commits.configuration';
+import {PerformanceTestConfiguration} from "../../../metrics/performance-test/performance-test.configuration";
 
 @Component({
   selector: 'app-metric-previews',
@@ -36,9 +36,9 @@ export class MetricPreviewsComponent implements OnInit, OnDestroy {
       defaultSort: 2,
       currentSort: 2
     }],
-    [TestAutomationConfiguration.identifier, {
-      defaultSort: 3,
-      currentSort: 3
+    [PerformanceTestConfiguration.identifier, {
+        defaultSort: 3,
+        currentSort: 3
     }],
     [StaticCodeAnalysisConfiguration.identifier, {
       defaultSort: 4,

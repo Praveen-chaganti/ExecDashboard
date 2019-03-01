@@ -8,11 +8,11 @@ import {BuildingBlockMetricSummary} from '../../../shared/domain-models/building
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/observable/throw';
-import {TestAutomationConfiguration} from '../test-automation.configuration';
+import {PerformanceTestConfiguration} from '../performance-test.configuration';
 
 @Injectable()
-export class TestAutomationService extends MetricService {
-  protected metricType = TestAutomationConfiguration.identifier;
+export class PerformanceTestService extends MetricService {
+  protected metricType = PerformanceTestConfiguration.identifier;
 
   constructor(private http: HttpClient) { super(http); }
 

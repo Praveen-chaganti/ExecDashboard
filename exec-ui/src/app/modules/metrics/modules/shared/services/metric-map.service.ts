@@ -3,8 +3,6 @@ import {OpenSourceViolationsPrimaryMetricStrategy} from '../../metrics/open-sour
 import {OpenSourceViolationsTrendStrategy} from '../../metrics/open-source-violations/strategies/open-source-violations-trend-strategy';
 import {SecurityViolationsPrimaryMetricStrategy} from '../../metrics/security-violations/strategies/security-violations-primary-metric-strategy';
 import {SecurityViolationsTrendStrategy} from '../../metrics/security-violations/strategies/security-violations-trend-strategy';
-import {TestAutomationPrimaryMetricStrategy} from '../../metrics/test-automation/strategies/test-automation-primary-metric-strategy';
-import {TestAutomationTrendStrategy} from '../../metrics/test-automation/strategies/test-automation-trend-strategy';
 import {StaticCodeAnalysisPrimaryMetricStrategy} from '../../metrics/static-code-analysis/strategies/static-code-analysis-primary-metric-strategy';
 import {StaticCodeAnalysisTrendStrategy} from '../../metrics/static-code-analysis/strategies/static-code-analysis-trend-strategy';
 import {ProductionIncidentsPrimaryMetricStrategy} from '../../metrics/production-incidents/strategies/production-incidents-primary-metric-strategy';
@@ -22,11 +20,13 @@ import {ProductionIncidentsConfiguration} from '../../metrics/production-inciden
 import {ProductionReleasesConfiguration} from '../../metrics/production-releases/production-releases.configuration';
 import {SecurityViolationsConfiguration} from '../../metrics/security-violations/security-violations.configuration';
 import {StaticCodeAnalysisConfiguration} from '../../metrics/static-code-analysis/static-code-analysis.configuration';
-import {TestAutomationConfiguration} from '../../metrics/test-automation/test-automation.configuration';
 import {UnitTestCoverageConfiguration} from '../../metrics/unit-test-coverage/unit-test-coverage.configuration';
 import {SCMCommitsTrendStrategy} from '../../metrics/scm-commits/strategies/scm-commits-trend-strategy';
 import {SCMCommitsPrimaryMetricStrategy} from '../../metrics/scm-commits/strategies/scm-commits-primary-metric-strategy';
 import {SCMCommitsConfiguration} from '../../metrics/scm-commits/scm-commits.configuration';
+import {PerformanceTestConfiguration} from "../../metrics/performance-test/performance-test.configuration";
+import {PerformanceTestPrimaryMetricStrategy} from "../../metrics/performance-test/strategies/performance-test-primary-metric-strategy";
+import {PerformanceTestTrendStrategy} from "../../metrics/performance-test/strategies/performance-test-trend-strategy";
 
 @Injectable()
 export class MetricMapService {
@@ -34,8 +34,6 @@ export class MetricMapService {
               private openSourceViolationsPrimaryMetricStrategy: OpenSourceViolationsPrimaryMetricStrategy,
               private securityViolationsPrimaryMetricStrategy: SecurityViolationsPrimaryMetricStrategy,
               private securityViolationsTrendStrategy: SecurityViolationsTrendStrategy,
-              private testAutomationPrimaryMetricStrategy: TestAutomationPrimaryMetricStrategy,
-              private testAutomationTrendStrategy: TestAutomationTrendStrategy,
               private staticCodeAnalysisPrimaryMetricStrategy: StaticCodeAnalysisPrimaryMetricStrategy,
               private staticCodeAnalysisTrendStrategy: StaticCodeAnalysisTrendStrategy,
               private productionIncidentsPrimaryMetricStrategy: ProductionIncidentsPrimaryMetricStrategy,
@@ -48,7 +46,9 @@ export class MetricMapService {
               private pipelineLeadTimeTrendStrategy: PipelineLeadTimeTrendStrategy,
               private pipelineLeadTimeBuildingBlockPrimaryMetricStrategy: PipelineLeadTimeBuildingBlockPrimaryMetricStrategy,
               private scmCommitsPrimaryMetricStrategy: SCMCommitsPrimaryMetricStrategy,
-              private scmCommitsTrendStrategy: SCMCommitsTrendStrategy) { }
+              private scmCommitsTrendStrategy: SCMCommitsTrendStrategy,
+              private performanceTestPrimaryMetricStrategy: PerformanceTestPrimaryMetricStrategy,
+              private performanceTestTrendStategy: PerformanceTestTrendStrategy) { }
 
   public metrics(): Map<string, any> {
     return new Map<string, any>([
@@ -63,12 +63,6 @@ export class MetricMapService {
         trendStrategy: this.securityViolationsTrendStrategy,
         isRatio: false,
         label: SecurityViolationsConfiguration.buildingBlockLabel
-      }],
-      [TestAutomationConfiguration.identifier, {
-        primaryMetricStrategy: this.testAutomationPrimaryMetricStrategy,
-        trendStrategy: this.testAutomationTrendStrategy,
-        isRatio: true,
-        label: TestAutomationConfiguration.buildingBlockLabel
       }],
       [StaticCodeAnalysisConfiguration.identifier, {
         primaryMetricStrategy: this.staticCodeAnalysisPrimaryMetricStrategy,
@@ -106,6 +100,12 @@ export class MetricMapService {
         trendStrategy: this.scmCommitsTrendStrategy,
         isRatio: false,
         label: SCMCommitsConfiguration.buildingBlockLabel
+      }],
+      [PerformanceTestConfiguration.identifier, {
+          primaryMetricStrategy: this.performanceTestPrimaryMetricStrategy,
+          trendStrategy: this.performanceTestTrendStategy,
+          isRatio: true,
+          label: PerformanceTestConfiguration.buildingBlockLabel
       }]
     ]);
   }

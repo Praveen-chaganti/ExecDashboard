@@ -40,14 +40,7 @@
                                    (metricPreviewInitialized)="addMetric()"
                                    [selectedMetric]="selectedMetric"
                                    (isSelectedEvent)="selectMetric($event)"></app-security-violations-preview -->
-  <!-- app-test-automation-card class="metric" [attr.data-sort]="sortMap.get('test-automation').currentSort" fxFlex
-                            [ngClass]="{'disabled': isDisabled('test-automation')}"
-                            [portfolioName]="portfolioName" [portfolioLob]="portfolioLob" [productId]="this.productId"
-                            (hideBuildingBlocksEvent)="reset()"
-                            (showBuildingBlocksEvent)="showBuildingBlocks($event)"
-                            (metricPreviewInitialized)="addMetric()"
-                            [selectedMetric]="selectedMetric"
-                            (isSelectedEvent)="selectMetric($event)"></app-test-automation-card -->
+
   <app-unit-test-coverage-card class="metric" [attr.data-sort]="sortMap.get('unit-test-coverage').currentSort"
                                [ngClass]="{'disabled': isDisabled('unit-test-coverage')}"
                                [portfolioName]="portfolioName" [portfolioLob]="portfolioLob" [productId]="this.productId"
@@ -56,6 +49,15 @@
                                (metricPreviewInitialized)="addMetric()"
                                [selectedMetric]="selectedMetric"
                                (isSelectedEvent)="selectMetric($event)" fxFlex></app-unit-test-coverage-card>
+
+  <app-performance-test-card class="metric" [attr.data-sort]="sortMap.get('performance-test').currentSort" fxFlex
+                             [ngClass]="{'disabled': isDisabled('performance-test')}"
+                             [portfolioName]="portfolioName" [portfolioLob]="portfolioLob" [productId]="this.productId"
+                             (hideBuildingBlocksEvent)="reset()"
+                             (showBuildingBlocksEvent)="showBuildingBlocks($event)"
+                             (metricPreviewInitialized)="addMetric()"
+                             [selectedMetric]="selectedMetric"
+                             (isSelectedEvent)="selectMetric($event)"></app-performance-test-card>
   <!-- app-production-releases-preview class="metric" [attr.data-sort]="sortMap.get('production-releases').currentSort"
                                    [ngClass]="{'disabled': isDisabled('production-releases')}"
                                    [portfolioName]="portfolioName" [portfolioLob]="portfolioLob" [productId]="this.productId"

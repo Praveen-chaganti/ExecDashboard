@@ -1,41 +1,41 @@
 import {MetricDetailModel} from '../../../../shared/component-models/metric-detail-model';
-import {TestAutomationDetailStrategy} from '../../strategies/test-automation-detail-strategy';
-import {TestAutomationService} from '../../services/test-automation.service';
+import {PerformanceTestDetailStrategy} from '../../strategies/performance-test-detail-strategy';
+import {PerformanceTestService} from '../../services/performance-test.service';
 import {Component, OnInit} from '@angular/core';
 import {MetricDetailBaseComponent} from '../../../../shared/components/metric-detail/metric-detail-base.component';
 import {ActivatedRoute, Router, Params} from '@angular/router';
 import {PortfolioService} from '../../../../../../shared/shared.module';
-import {TestAutomationBuildingBlocksStrategy} from '../../strategies/test-automation-building-blocks-strategy';
+import {PerformanceTestBuildingBlocksStrategy} from '../../strategies/performance-test-building-blocks-strategy';
 import {ProductService} from '../../../../shared/services/product.service';
-import {TestAutomationConfiguration} from '../../test-automation.configuration';
+import {PerformanceTestConfiguration} from '../../performance-test.configuration';
 import {Location} from '@angular/common';
 
 @Component({
-  selector: 'app-test-automation-detail',
+  selector: 'app-performance-test-detail',
   templateUrl: '../../../../shared/components/metric-detail/metric-detail-base.component.html',
   styleUrls: ['../../../../shared/components/metric-detail/metric-detail-base.component.scss'],
   providers: [
-    TestAutomationService,
+    PerformanceTestService,
     ProductService
   ]
 })
-export class TestAutomationDetailComponent extends MetricDetailBaseComponent implements OnInit {
+export class PerformanceTestDetailComponent extends MetricDetailBaseComponent implements OnInit {
 
   constructor(protected router: Router,
               private activatedRoute: ActivatedRoute,
-              private testAutomationService: TestAutomationService,
+              private performanceTestService: PerformanceTestService,
               protected portfolioService: PortfolioService,
               protected productService: ProductService,
-              public buildingBlockStrategy: TestAutomationBuildingBlocksStrategy,
-              public detailStrategy: TestAutomationDetailStrategy,
+              public buildingBlockStrategy: PerformanceTestBuildingBlocksStrategy,
+              public detailStrategy: PerformanceTestDetailStrategy,
               protected location: Location) {
     super();
   }
 
   ngOnInit() {
     this.metricDetailView = new MetricDetailModel;
-    this.heading = this.heading || TestAutomationConfiguration.detailHeading;
-    this.dataService = this.testAutomationService;
+    this.heading = this.heading || PerformanceTestConfiguration.detailHeading;
+    this.dataService = this.performanceTestService;
 
     this.activatedRoute.params.subscribe((params: Params) => {
       this.portfolioName = params['portfolio-name'];
@@ -48,7 +48,7 @@ export class TestAutomationDetailComponent extends MetricDetailBaseComponent imp
 
   getHeader() {
     return {
-      primaryText: this.heading || TestAutomationConfiguration.detailHeading,
+      primaryText: this.heading || PerformanceTestConfiguration.detailHeading,
       crumbs: this.getCrumbs(),
       button: this.getReturnRouteModel(),
       icon: this.getIcon()

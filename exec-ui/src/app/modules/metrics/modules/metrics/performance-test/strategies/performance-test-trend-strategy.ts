@@ -4,7 +4,7 @@ import {TrendStrategyBase} from '../../../shared/strategies/trend-strategy-base'
 import {Injectable} from '@angular/core';
 
 @Injectable()
-export class TestAutomationTrendStrategy extends TrendStrategyBase {
+export class PerformanceTestTrendStrategy extends TrendStrategyBase {
 
   public parse(model: MetricSummary): MetricTrendModel {
     return this.trendDetails(model.trendSlope);

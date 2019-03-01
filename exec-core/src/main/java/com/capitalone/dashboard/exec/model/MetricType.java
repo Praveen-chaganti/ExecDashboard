@@ -11,14 +11,13 @@ import static com.capitalone.dashboard.exec.model.MetricType.SummaryRange.MULTI_
 public enum MetricType {
     OPEN_SOURCE_VIOLATIONS("open-source-violations", DataType.SUM, DAY, null),
     SECURITY_VIOLATIONS("security-violations", DataType.SUM, DAY, null),
-    TEST_AUTOMATION("test-automation", DataType.RATIO, DAY, null),
+    PERFORMANCE_TEST("performance-test", DataType.RATIO, DAY, null),
     STATIC_CODE_ANALYSIS("static-code-analysis", DataType.SUM, DAY, null),
     PRODUCTION_INCIDENTS("production-incidents", DataType.SUM, MULTI_DAY, "mttr"),
     UNIT_TEST_COVERAGE("unit-test-coverage", DataType.RATIO, DAY, null),
     PRODUCTION_RELEASES("production-releases", DataType.SUM, MULTI_DAY, null),
     PIPELINE_LEAD_TIME("pipeline-lead-time", DataType.AVERAGE, DAY, null),
-    SCM_COMMITS("scm-commits", DataType.SUM, MULTI_DAY, null),
-    TRACEABILITY("traceability", DataType.RATIO, DAY, null);
+    SCM_COMMITS("scm-commits", DataType.SUM, MULTI_DAY, null);
 
     public enum DataType { SUM, RATIO, AVERAGE }
     public enum SummaryRange { DAY, MULTI_DAY }

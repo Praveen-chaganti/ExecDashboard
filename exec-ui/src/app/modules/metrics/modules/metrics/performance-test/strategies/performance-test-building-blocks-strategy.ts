@@ -1,18 +1,18 @@
 import {BuildingBlockMetricSummaryModel} from '../../../shared/component-models/building-block-metric-summary-model';
 import {BuildingBlockMetricSummary} from '../../../shared/domain-models/building-block-metric-summary';
 import {BuildingBlockModel} from '../../../shared/component-models/building-block-model';
-import {TestAutomationTrendStrategy} from './test-automation-trend-strategy';
-import {TestAutomationPrimaryMetricStrategy} from './test-automation-primary-metric-strategy';
+import {PerformanceTestTrendStrategy} from './performance-test-trend-strategy';
+import {PerformanceTestPrimaryMetricStrategy} from './performance-test-primary-metric-strategy';
 import {BuildingBlocksStrategyBase} from '../../../shared/strategies/building-blocks-strategy-base';
 import {Injectable} from '@angular/core';
 import {NavigationModel} from '../../../../../shared/component-models/navigation-model';
-import {TestAutomationConfiguration} from '../test-automation.configuration';
+import {PerformanceTestConfiguration} from '../performance-test.configuration';
 
 @Injectable()
-export class TestAutomationBuildingBlocksStrategy extends BuildingBlocksStrategyBase {
+export class PerformanceTestBuildingBlocksStrategy extends BuildingBlocksStrategyBase {
 
-  constructor (private primaryMetricStrategy: TestAutomationPrimaryMetricStrategy,
-               private trendStrategy: TestAutomationTrendStrategy) { super(); }
+  constructor (private primaryMetricStrategy: PerformanceTestPrimaryMetricStrategy,
+               private trendStrategy: PerformanceTestTrendStrategy) { super(); }
 
   parse(model: BuildingBlockMetricSummary[]): BuildingBlockModel[] {
     const buildingBlocks = new Array<BuildingBlockModel>();
@@ -47,11 +47,11 @@ export class TestAutomationBuildingBlocksStrategy extends BuildingBlocksStrategy
   private mapTestAutomationMetric(buildingBlockMetricSummary: BuildingBlockMetricSummary): BuildingBlockMetricSummaryModel[] {
     return buildingBlockMetricSummary.metrics
       .filter((metric) => {
-        return metric.name === TestAutomationConfiguration.identifier;
+        return metric.name === PerformanceTestConfiguration.identifier;
       })
       .map((metric) => {
         return {
-          name: TestAutomationConfiguration.buildingBlockLabel,
+          name: PerformanceTestConfiguration.buildingBlockLabel,
           unit: null,
           value: this.primaryMetricStrategy.parse(metric.counts),
           trend: this.trendStrategy.parse(metric),
