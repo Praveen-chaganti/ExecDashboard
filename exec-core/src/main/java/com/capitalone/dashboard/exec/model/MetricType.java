@@ -17,13 +17,9 @@ public enum MetricType {
     UNIT_TEST_COVERAGE("unit-test-coverage", DataType.RATIO, DAY, null),
     PRODUCTION_RELEASES("production-releases", DataType.SUM, MULTI_DAY, null),
     PIPELINE_LEAD_TIME("pipeline-lead-time", DataType.AVERAGE, DAY, null),
-<<<<<<< Updated upstream
-    SCM_COMMITS("scm-commits", DataType.SUM, MULTI_DAY, null);
-=======
     SCM_COMMITS("scm-commits", DataType.SUM, MULTI_DAY, null),
     FEATURE_TEST_PASSING("feature-test-passing", DataType.RATIO, MULTI_DAY, null),
     TRACEABILITY("traceability", DataType.RATIO, DAY, null);
->>>>>>> Stashed changes
 
     public enum DataType { SUM, RATIO, AVERAGE }
     public enum SummaryRange { DAY, MULTI_DAY }
