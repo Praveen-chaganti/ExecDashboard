@@ -31,6 +31,7 @@ export class PerformanceTestGraphStrategy extends GraphStrategyBase {
 
     protected count(seriesElement: MetricTimeSeriesElement): number {
         const validSet = new Set(['Transaction Per Second', 'Avg Response Times', 'Error Rate Threshold']);
+        // TODO : average calculation has to updated only error date
         return Math.round(seriesElement.counts.reduce((sum, item) => validSet.has(item.label['type']) ? sum + item.value : sum, 0)/3);
     }
 }
