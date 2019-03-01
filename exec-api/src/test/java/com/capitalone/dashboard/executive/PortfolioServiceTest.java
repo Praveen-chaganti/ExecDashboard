@@ -63,7 +63,11 @@ public class PortfolioServiceTest {
         BuildingBlockMetricSummary actual = a.get(0);
         Assert.assertEquals(actual.getMetrics().size(),1);
         Assert.assertEquals(actual.getName(),"product1");
+<<<<<<< Updated upstream
         Assert.assertEquals(actual.getTotalExpectedMetrics(),9);
+=======
+        Assert.assertEquals(actual.getTotalExpectedMetrics(),11);
+>>>>>>> Stashed changes
         Assert.assertEquals(actual.getTotalComponents(),1);
         Assert.assertEquals(actual.getReportingComponents(),0);
     }
@@ -87,7 +91,11 @@ public class PortfolioServiceTest {
         BuildingBlockMetricSummary actual = portfolioService.getPortfolioProduct("test","LOB","Product1");
         Assert.assertEquals(actual.getMetrics().size(),1);
         Assert.assertEquals(actual.getName(),"Product1");
+<<<<<<< Updated upstream
         Assert.assertEquals(actual.getTotalExpectedMetrics(),9);
+=======
+        Assert.assertEquals(actual.getTotalExpectedMetrics(),11);
+>>>>>>> Stashed changes
         Assert.assertEquals(actual.getTotalComponents(),1);
         Assert.assertEquals(actual.getReportingComponents(),0);
     }
@@ -100,7 +108,11 @@ public class PortfolioServiceTest {
         BuildingBlockMetricSummary actual = a.get(0);
         Assert.assertEquals(actual.getMetrics().size(),1);
         Assert.assertEquals(actual.getName(),"Product1");
+<<<<<<< Updated upstream
         Assert.assertEquals(actual.getTotalExpectedMetrics(),9);
+=======
+        Assert.assertEquals(actual.getTotalExpectedMetrics(),11);
+>>>>>>> Stashed changes
         Assert.assertEquals(actual.getTotalComponents(),1);
         Assert.assertEquals(actual.getReportingComponents(),0);
     }
