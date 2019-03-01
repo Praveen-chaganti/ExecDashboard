@@ -7,16 +7,16 @@ import {PerformanceTestConfiguration} from "../performance-test.configuration";
 @Injectable()
 export class PerformanceTestAuxiliaryErrorRateFigureStrategy implements Strategy<MetricSummary, MetricValueModel> {
     parse(model: MetricSummary) {
-        const automated = model.counts.find(count => count.label['type'] === PerformanceTestConfiguration.auxilliaryErrorRateIdentifier);
+        const error_rate = model.counts.find(count => count.label['type'] === PerformanceTestConfiguration.auxilliaryErrorRateIdentifier);
 
-        if (!automated) {
+        if (!error_rate) {
             return {hasData: false, name: PerformanceTestConfiguration.auxilliaryErrorRateFigureHeading, value: null};
         }
 
         return {
 
             name: PerformanceTestConfiguration.auxilliaryErrorRateFigureHeading,
-            value: Math.round(automated.value)
+            value: Math.round(error_rate.value)
         };
     }
 }

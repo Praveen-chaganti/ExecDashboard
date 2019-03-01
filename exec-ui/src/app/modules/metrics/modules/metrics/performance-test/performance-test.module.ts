@@ -15,6 +15,9 @@ import {PerformanceTestTrendStrategy} from './strategies/performance-test-trend-
 import {PerformanceTestDetailComponent} from './components/metric-detail/performance-test-detail.component';
 import {PerformanceTestPreviewComponent} from './components/metric-preview/performance-test-preview.component';
 import {PerformanceTestRoutingModule} from './performance-test.routing.module';
+import {PerformanceTestAuxiliaryErrorRateFigureStrategy} from "./strategies/performance-test-auxiliary-error-rate-figure-strategy";
+import {PerformanceTestAuxiliaryTPSFigureStrategy} from "./strategies/performance-test-auxiliary-tps-figure-strategy";
+import {PerformanceTestAuxiliaryResponseTimeFigureStrategy} from "./strategies/performance-test-auxiliary-response-time-figure-strategy";
 
 @NgModule({
   imports: [
@@ -40,7 +43,10 @@ import {PerformanceTestRoutingModule} from './performance-test.routing.module';
     PerformanceTestSegmentationStrategy,
     PerformanceTestDetailStrategy,
     PerformanceTestPreviewStrategy,
-    PerformanceTestGraphStrategy
+    PerformanceTestGraphStrategy,
+    PerformanceTestAuxiliaryErrorRateFigureStrategy,
+    PerformanceTestAuxiliaryTPSFigureStrategy,
+    PerformanceTestAuxiliaryResponseTimeFigureStrategy
   ]
 })
 

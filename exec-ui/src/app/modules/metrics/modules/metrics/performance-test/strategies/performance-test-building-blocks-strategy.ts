@@ -7,12 +7,18 @@ import {BuildingBlocksStrategyBase} from '../../../shared/strategies/building-bl
 import {Injectable} from '@angular/core';
 import {NavigationModel} from '../../../../../shared/component-models/navigation-model';
 import {PerformanceTestConfiguration} from '../performance-test.configuration';
+import {PerformanceTestAuxiliaryErrorRateFigureStrategy} from "./performance-test-auxiliary-error-rate-figure-strategy";
+import {PerformanceTestAuxiliaryResponseTimeFigureStrategy} from "./performance-test-auxiliary-response-time-figure-strategy";
+import {PerformanceTestAuxiliaryTPSFigureStrategy} from "./performance-test-auxiliary-tps-figure-strategy";
 
 @Injectable()
 export class PerformanceTestBuildingBlocksStrategy extends BuildingBlocksStrategyBase {
 
   constructor (private primaryMetricStrategy: PerformanceTestPrimaryMetricStrategy,
-               private trendStrategy: PerformanceTestTrendStrategy) { super(); }
+               private trendStrategy: PerformanceTestTrendStrategy,
+               private auxiliaryErrorRateFigureStrategy: PerformanceTestAuxiliaryErrorRateFigureStrategy,
+               private auxiliaryResponseTimeFigureStrategy: PerformanceTestAuxiliaryResponseTimeFigureStrategy,
+               private auxiliaryTPSFigureStrategy: PerformanceTestAuxiliaryTPSFigureStrategy) { super(); }
 
   parse(model: BuildingBlockMetricSummary[]): BuildingBlockModel[] {
     const buildingBlocks = new Array<BuildingBlockModel>();
@@ -29,7 +35,7 @@ export class PerformanceTestBuildingBlocksStrategy extends BuildingBlocksStrateg
         total: this.mapTotalComponents(p),
         completeness: this.mapCompleteness(p),
         lastScanned: this.mapLastScanned(p),
-        metrics: this.mapTestAutomationMetric(p),
+        metrics: this.mapPerformanceMetric(p),
         detail: this.mapNavigationModel(p)
       });
     });
@@ -44,19 +50,72 @@ export class PerformanceTestBuildingBlocksStrategy extends BuildingBlocksStrateg
     return navigationModel;
   }
 
-  private mapTestAutomationMetric(buildingBlockMetricSummary: BuildingBlockMetricSummary): BuildingBlockMetricSummaryModel[] {
-    return buildingBlockMetricSummary.metrics
-      .filter((metric) => {
-        return metric.name === PerformanceTestConfiguration.identifier;
-      })
-      .map((metric) => {
-        return {
-          name: PerformanceTestConfiguration.buildingBlockLabel,
-          unit: null,
-          value: this.primaryMetricStrategy.parse(metric.counts),
-          trend: this.trendStrategy.parse(metric),
-          isRatio: true
-        };
-      });
-  }
+
+    private mapPerformanceMetric(buildingBlockMetricSummary: BuildingBlockMetricSummary): BuildingBlockMetricSummaryModel[] {
+        const metric = buildingBlockMetricSummary.metrics.find(m => m.name === PerformanceTestConfiguration.identifier);
+
+        if (!metric) {
+            return [];
+        }
+
+        return [
+            mapErrorRateMetric(this.auxiliaryErrorRateFigureStrategy.parse(metric)),
+            mapResponseTimeMetric(this.auxiliaryResponseTimeFigureStrategy.parse(metric)),
+            mapTPSMetric(this.auxiliaryTPSFigureStrategy.parse(metric))
+        ];
+
+        function mapErrorRateMetric(value) {
+            return {
+                value: mapErrorRate(value),
+                trend: null,
+                isRatio: true
+            };
+        }
+
+
+        function mapErrorRate(valueModel) {
+            return {
+
+                name: PerformanceTestConfiguration.auxilliaryErrorRateIdentifier,
+                value: valueModel.value
+            };
+        }
+
+        function mapResponseTimeMetric(value) {
+            return {
+                value: mapResponseTime(value),
+                trend: null,
+                isRatio: false
+            };
+        }
+
+
+        function mapResponseTime(valueModel) {
+            return {
+
+                name: PerformanceTestConfiguration.auxilliaryResponseTimeIdentifier,
+                value: valueModel.value
+            };
+        }
+
+        function mapTPSMetric(value) {
+            return {
+                value: mapTPS(value),
+                trend: null,
+                isRatio: false
+            };
+        }
+
+
+        function mapTPS(valueModel) {
+            return {
+
+                name: PerformanceTestConfiguration.auxilliaryTPSIdentifier,
+                value: valueModel.value
+            };
+        }
+
+
+    }
 }
+
