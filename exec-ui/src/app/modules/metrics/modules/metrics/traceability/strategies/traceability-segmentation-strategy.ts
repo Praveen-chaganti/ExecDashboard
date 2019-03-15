@@ -4,13 +4,13 @@ import {MetricSegmentationModel} from '../../../shared/component-models/metric-s
 import {Injectable} from '@angular/core';
 
 @Injectable()
-export class SecurityViolationsSegmentationStrategy implements Strategy<MetricSummary, MetricSegmentationModel> {
+export class TraceabilitySegmentationStrategy implements Strategy<MetricSummary, MetricSegmentationModel> {
   parse(model: MetricSummary): MetricSegmentationModel {
 
     const rows = [
-      {name: 'blocker', order: 1},
-      {name: 'critical', order: 2},
-      {name: 'major', order: 3}
+      {name: 'Automated', order: 1},
+        {name: 'Manual', order: 2}
+
     ];
 
     return {
@@ -26,9 +26,9 @@ export class SecurityViolationsSegmentationStrategy implements Strategy<MetricSu
     };
 
 
-    function segmentCount(type: string) {
+    function segmentCount(label: string) {
       return model.counts
-        .filter(i =>  i.label['type'] === type)
+        .filter(i => i.label['type'] === label)
         .map(c => c.value)
         .reduce((a, b) => a + b, 0);
     }

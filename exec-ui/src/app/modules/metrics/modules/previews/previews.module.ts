@@ -13,6 +13,7 @@ import {UnitTestCoverageModule} from '../metrics/unit-test-coverage/unit-test-co
 import {MetricPreviewsComponent} from '../previews/components/metric-previews/metric-previews.component';
 import {PipelineLeadTimeModule} from '../metrics/pipeline-lead-time/pipeline-lead-time.module';
 import {PreviewsRoutingModule} from './previews.routing.module';
+import {TraceabilityModule} from "../metrics/traceability/traceability.module";
 import {SCMCommitsModule} from '../metrics/scm-commits/scm-commits.module';
 import {PerformanceTestModule} from "../metrics/performance-test/performance-test.module";
 
@@ -29,6 +30,7 @@ import {PerformanceTestModule} from "../metrics/performance-test/performance-tes
     SecurityViolationsModule,
     StaticCodeAnalysisModule,
     UnitTestCoverageModule,
+    TraceabilityModule,
     PipelineLeadTimeModule,
     SCMCommitsModule,
     PerformanceTestModule

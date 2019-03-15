@@ -6,6 +6,7 @@ import {ProductionReleasesConfiguration} from '../../../metrics/production-relea
 import {SecurityViolationsConfiguration} from '../../../metrics/security-violations/security-violations.configuration';
 import {StaticCodeAnalysisConfiguration} from '../../../metrics/static-code-analysis/static-code-analysis.configuration';
 import {UnitTestCoverageConfiguration} from '../../../metrics/unit-test-coverage/unit-test-coverage.configuration';
+import {TraceabilityConfiguration} from "../../../metrics/traceability/traceability.configuration";
 import {SCMCommitsConfiguration} from '../../../metrics/scm-commits/scm-commits.configuration';
 import {PerformanceTestConfiguration} from "../../../metrics/performance-test/performance-test.configuration";
 
@@ -63,6 +64,10 @@ export class MetricPreviewsComponent implements OnInit, OnDestroy {
     [SCMCommitsConfiguration.identifier, {
       defaultSort: 9,
       currentSort: 9
+    }],
+    [TraceabilityConfiguration.identifier, {
+        defaultSort:10,
+        currentSort: 10
     }],
   ]);
 

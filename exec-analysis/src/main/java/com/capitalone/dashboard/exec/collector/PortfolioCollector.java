@@ -67,10 +67,12 @@ public class PortfolioCollector implements Runnable {
 
     private final AuditResultCollector auditResultCollector;
 
-
     private UnitTestCoverageCollector unitTestCoverageCollector;
 
+    private SecurityCollector securityCollector;
+
     @Autowired
+    @SuppressWarnings("PMD.ExcessiveParameterList")
     public PortfolioCollector(TaskScheduler taskScheduler, PortfolioRepository portfolioRepository,
                               PortfolioCollectorSetting setting,
                               SCMCollector scmCollector,
@@ -78,7 +80,8 @@ public class PortfolioCollector implements Runnable {
                               StaticCodeAnalysisCollector staticCodeAnalysisCollector,
                               IncidentCollector incidentCollector,
                               UnitTestCoverageCollector unitTestCoverageCollector,
-                              AuditResultCollector auditResultCollector ) {
+                              AuditResultCollector auditResultCollector,
+                              SecurityCollector securityCollector) {
 
         this.taskScheduler = taskScheduler;
         this.portfolioRepository = portfolioRepository;
@@ -89,11 +92,13 @@ public class PortfolioCollector implements Runnable {
         this.incidentCollector = incidentCollector;
         this.auditResultCollector = auditResultCollector;
         this.unitTestCoverageCollector = unitTestCoverageCollector;
+        this.securityCollector = securityCollector;
     }
 
     /**
      * Main collection loop
      */
+    @SuppressWarnings("PMD.NPathComplexity")
     public void collect() {
         HygieiaSparkConnection sparkConnection = new HygieiaSparkConnection(setting.getReadUri(), setting.getReadDatabase(),
                 setting.getWriteUri(), setting.getWriteDatabase());
@@ -132,6 +137,10 @@ public class PortfolioCollector implements Runnable {
         if(setting.isAuditResultCollectorFlag()){
             LOGGER.info("##### Starting Audit Results Collector #####");
             auditResultCollector.collect(sparkSession, javaSparkContext, portfolioList);
+        }
+        if(setting.isSecurityCollectorFlag()) {
+            LOGGER.info("##### Starting Security Collector #####");
+            securityCollector.collect(sparkSession, javaSparkContext, portfolioList);
         }
         sparkSession.close();
         javaSparkContext.close();

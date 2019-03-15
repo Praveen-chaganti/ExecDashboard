@@ -27,6 +27,9 @@ import {SCMCommitsConfiguration} from '../../metrics/scm-commits/scm-commits.con
 import {PerformanceTestConfiguration} from "../../metrics/performance-test/performance-test.configuration";
 import {PerformanceTestPrimaryMetricStrategy} from "../../metrics/performance-test/strategies/performance-test-primary-metric-strategy";
 import {PerformanceTestTrendStrategy} from "../../metrics/performance-test/strategies/performance-test-trend-strategy";
+import {TraceabilityPrimaryMetricStrategy} from "../../metrics/traceability/strategies/traceability-primary-metric-strategy";
+import {TraceabilityTrendStrategy} from "../../metrics/traceability/strategies/traceability-trend-strategy";
+import {TraceabilityConfiguration} from "../../metrics/traceability/traceability.configuration";
 
 @Injectable()
 export class MetricMapService {
@@ -48,7 +51,9 @@ export class MetricMapService {
               private scmCommitsPrimaryMetricStrategy: SCMCommitsPrimaryMetricStrategy,
               private scmCommitsTrendStrategy: SCMCommitsTrendStrategy,
               private performanceTestPrimaryMetricStrategy: PerformanceTestPrimaryMetricStrategy,
-              private performanceTestTrendStategy: PerformanceTestTrendStrategy) { }
+              private performanceTestTrendStategy: PerformanceTestTrendStrategy,
+              private traceabilityPrimaryMetricsStrategy: TraceabilityPrimaryMetricStrategy,
+              private traceabilityTrendStrategy: TraceabilityTrendStrategy) { }
 
   public metrics(): Map<string, any> {
     return new Map<string, any>([
@@ -101,12 +106,19 @@ export class MetricMapService {
         isRatio: false,
         label: SCMCommitsConfiguration.buildingBlockLabel
       }],
+        /*[TraceabilityConfiguration.identifier, {
+          primaryMetricStrategy: this.traceabilityPrimaryMetricsStrategy,
+          trendStrategy: this.traceabilityTrendStrategy,
+          isRatio: false,
+          label: TraceabilityConfiguration.buildingBlockLabel
+      }],*/
       [PerformanceTestConfiguration.identifier, {
           primaryMetricStrategy: this.performanceTestPrimaryMetricStrategy,
           trendStrategy: this.performanceTestTrendStategy,
           isRatio: true,
           label: PerformanceTestConfiguration.buildingBlockLabel
       }]
+
     ]);
   }
 }
