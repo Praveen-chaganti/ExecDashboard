@@ -8,9 +8,9 @@ export class PerformanceTestSegmentationStrategy implements Strategy<MetricSumma
     parse(model: MetricSummary): MetricSegmentationModel {
 
         const rows = [
-            {name: 'Transaction Per Second', order: 1},
-            {name: 'Avg Response Times', order: 2},
-            {name: 'Error Rate Threshold', order: 3}
+            {name: 'TPS', order: 1},
+            {name: 'Response Time', order: 2},
+            {name: 'Error Rate', order: 3}
 
         ];
 

@@ -29,13 +29,13 @@ export class PerformanceTestPreviewStrategy extends PreviewStrategyBase {
     function mapPrimary(valueModel) {
       return {
         name: PerformanceTestConfiguration.previewHeading,
-        value: valueModel.value
+        value: valueModel.value,
       };
     }
   }
 
     private calculateSecondaryMetric(model: MetricSummary) {
-        const validSet = new Set(['Error Rate Threshold']);
+        const validSet = new Set(['Error Rate']);
         const sums = model.counts
             .filter(count => validSet.has(count.label['type']))
             .reduce((runningSums, count) => {
@@ -52,8 +52,8 @@ export class PerformanceTestPreviewStrategy extends PreviewStrategyBase {
             result.push({name: 'Avg Response Times', value: sums.get('Avg Response Times').toLocaleString()});
         }*/
 
-        if (sums.get('Error Rate Threshold')) {
-            result.push({name: 'Error Rate Threshold', value: sums.get('Error Rate Threshold').toLocaleString()});
+        if (sums.get('Error Rate')) {
+            result.push({name: 'Error Rate', value: sums.get('Error Rate').toLocaleString(),unit:'%'});
         }
         return result;
     }

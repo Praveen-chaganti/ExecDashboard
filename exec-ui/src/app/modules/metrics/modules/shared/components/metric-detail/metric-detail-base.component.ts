@@ -113,7 +113,7 @@ export abstract class MetricDetailBaseComponent {
             if(localStorage.getItem("DetailsConditon")){
                 this.buildingBlocks.forEach((value,index)=>{
                     value.metrics.forEach((val,ind)=>{
-                        if(val.value.name !== "Error Rate Threshold"){
+                        if(val.value.name !== "Error Rate"){
                             value.metrics.splice(ind,2)
                         }
                     })

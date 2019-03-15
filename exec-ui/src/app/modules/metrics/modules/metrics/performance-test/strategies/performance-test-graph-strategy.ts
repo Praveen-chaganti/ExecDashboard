@@ -30,8 +30,7 @@ export class PerformanceTestGraphStrategy extends GraphStrategyBase {
   }
 
     protected count(seriesElement: MetricTimeSeriesElement): number {
-        const validSet = new Set(['Error Rate Threshold']);
-        // TODO : average calculation has to updated only error date
+        const validSet = new Set(['Error Rate']);
         return Math.round(seriesElement.counts.reduce((sum, item) => validSet.has(item.label['type']) ? sum + item.value : sum, 0));
     }
 }

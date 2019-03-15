@@ -8,7 +8,7 @@ import {PerformanceTestConfiguration} from '../performance-test.configuration';
 @Injectable()
 export class PerformanceTestPrimaryMetricStrategy extends PrimaryMetricStrategyBase {
     parse(counts: Count[]): MetricValueModel {
-        const validSet = new Set(['Error Rate Threshold']);
+        const validSet = new Set(['Error Rate']);
         return {
             name: PerformanceTestConfiguration.buildingBlockLabel,
             value: Math.round(counts
