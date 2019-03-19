@@ -45,9 +45,9 @@ public class HygieiaSparkQuery {
                     "ORDER BY timeWindow ASC";
 
     public static final String TRACEABILITY_QUERY_ALL_COLLECTOR_ITEMS =
-            "SELECT collectorItemId, traceability, cast(from_unixtime(cast(timestamp/1000 as bigint)) as timestamp) as timeWindow " +
+            "SELECT dashboardId, traceability, cast(from_unixtime(cast(timestamp/1000 as bigint)) as timestamp) as timeWindow " +
                     "FROM audit_results " +
-                    "WHERE (traceability IS NOT NULL) " +
+                    "WHERE (traceability IS NOT NULL)  and (auditType = 'TEST_RESULT') "+
                     "ORDER BY timeWindow ASC";
 
     public static final String CMDB_INCIDENT_QUERY =

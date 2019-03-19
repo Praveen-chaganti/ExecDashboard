@@ -44,7 +44,15 @@ public abstract class DefaultMetricCollector {
 
         DefaultDataCollector dataCollector
                 = new DefaultDataCollector(getCollection(), getQuery(), collectorItemList, sparkSession, javaSparkContext);
-        Map<String, List<Row>> rowsListMap = dataCollector.collectAll();
+        DefaultAuditDataCollector auditdataCollector
+                = new DefaultAuditDataCollector(getCollection(), getQuery(), sparkSession, javaSparkContext);
+        Map<String, List<Row>> rowsListMap;
+        if (getMetricType().equals(MetricType.TRACEABILITY)) {
+             rowsListMap = auditdataCollector.collectAll();
+        }else {
+            rowsListMap = dataCollector.collectAll();
+        }
+
         boolean deleteFlag = true;
 
         for (Portfolio portfolio: portfolioList) {
@@ -64,8 +72,14 @@ public abstract class DefaultMetricCollector {
                     componentMetricDetail.setLob(productComponent.getLob());
                     ObjectId dashboardId = productComponent.getProductComponentDashboardId();
                     if (dashboardId == null) { return; }
+                    List<String> dashboardIds = new ArrayList<>();
+                    dashboardIds.add(dashboardId.toString());
+                    if (getMetricType().equals(MetricType.TRACEABILITY)) {
+                        dashboardIds.stream().map(dashboardId1 -> getCollectorItemMetricDetail(rowsListMap.get(dashboardId1), getMetricType())).forEach(componentMetricDetail::addCollectorItemMetricDetail);
+                    }else{
                     List<String> collectorItems = dashboardCollectorItemsMap.get(dashboardId.toString()) != null ? dashboardCollectorItemsMap.get(dashboardId.toString()) : new ArrayList<>();
                     collectorItems.stream().map(collectorItem -> getCollectorItemMetricDetail(rowsListMap.get(collectorItem), getMetricType())).forEach(componentMetricDetail::addCollectorItemMetricDetail);
+                    }
                     productMetricDetail.addComponentMetricDetail(componentMetricDetail);
                 });
                 productMetricDetail.setTotalComponents(productComponents.size());
