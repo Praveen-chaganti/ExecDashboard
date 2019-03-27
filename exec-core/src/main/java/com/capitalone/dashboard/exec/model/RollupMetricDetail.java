@@ -1,14 +1,14 @@
 package com.capitalone.dashboard.exec.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Optional;
+import java.util.Collections;
 
 public class RollupMetricDetail extends MetricDetails {
     protected static final String MTTR = "mttr";
     protected static final String TYPE = "type";
-
     protected void updateSummary(MetricDetails metricDetails, int size) {
         if (metricDetails.isProcessed()) {return;}
         MetricSummary itemMetricSummary = metricDetails.getSummary();
@@ -17,11 +17,12 @@ public class RollupMetricDetail extends MetricDetails {
             summary.setLastScanned(itemMetricSummary.getLastScanned());
         }
         List<MetricCount> itemSummaryCounts = itemMetricSummary.getCounts();
+
         List<MetricCount> rollupSummaryCounts = summary.getCounts() != null ? summary.getCounts() : new ArrayList<>();
 
         for (MetricCount count : itemSummaryCounts) {
-            MetricCount copyCount = count.copy();
-            MetricCount existing = rollupSummaryCounts.stream().filter(cs -> cs.getLabel().equals(copyCount.getLabel())).findFirst().orElse(null);
+            MetricCount copyCount = getCopyCount(count,metricDetails);
+            MetricCount existing = rollupSummaryCounts.stream().filter(cs -> cs.getLabel().get("type").equals(copyCount.getLabel().get("type"))).findFirst().orElse(null);
             if (existing == null) {
                 rollupSummaryCounts.add(copyCount);
             } else {
@@ -40,6 +41,22 @@ public class RollupMetricDetail extends MetricDetails {
             metricCount.addAverageValue(existingValue,reporting);
         }
         return metricCount;
+    }
+
+    private MetricCount getCopyCount(MetricCount count, MetricDetails metricDetails){
+        MetricCount copyCount;
+        if(metricDetails.getType().equals(MetricType.AUDITRESULT )&& !metricDetails.getLevel().equals(MetricLevel.COLLECTOR_ITEM)){
+            MetricCount copyCount1 = new MetricCount();
+            HashMap<String,String> label = new HashMap<>();
+            label.put("type", count.getLabel().get("type"));
+            double val = count.getValue();
+            copyCount1.setLabel(label);
+            copyCount1.setValue(val);
+            copyCount = copyCount1.copy();
+        }else {
+            copyCount = count.copy();
+        }
+        return copyCount;
     }
 
     protected void updateTimeSeries(MetricDetails itemMetricDetails, int size) {

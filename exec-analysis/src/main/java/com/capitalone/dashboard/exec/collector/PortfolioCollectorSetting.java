@@ -43,6 +43,9 @@ public class PortfolioCollectorSetting {
     @Value("${feature.performanceCollectorFlag:true}")
     private  boolean performanceCollectorFlag;
 
+    @Value("${feature.auditCollectorFlag:true}")
+    private  boolean auditCollectorFlag;
+
     private Map<MetricType, List<Filter>> filters;
 
     public String getReadUri() { return readUri; }
@@ -135,6 +138,13 @@ public class PortfolioCollectorSetting {
 
     public void setPerformanceCollectorFlag(boolean performanceCollectorFlag) {
         this.performanceCollectorFlag = performanceCollectorFlag;
+    }
+    public boolean isAuditCollectorFlag() {
+        return auditCollectorFlag;
+    }
+
+    public void setAuditCollectorFlag(boolean auditCollectorFlag) {
+        this.auditCollectorFlag = auditCollectorFlag;
     }
 
     @PostConstruct
