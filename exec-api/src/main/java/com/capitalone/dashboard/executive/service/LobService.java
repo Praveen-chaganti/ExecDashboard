@@ -1,7 +1,6 @@
 package com.capitalone.dashboard.executive.service;
 
 
-import com.capitalone.dashboard.exec.model.Metric;
 import com.capitalone.dashboard.exec.model.MetricType;
 import com.capitalone.dashboard.executive.model.LobProductResponse;
 import com.capitalone.dashboard.executive.model.LobResponse;

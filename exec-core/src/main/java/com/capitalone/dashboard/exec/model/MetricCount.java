@@ -6,7 +6,7 @@ import java.util.Objects;
 public class MetricCount {
     private Map<String, String> label;
     private double value;
-
+    private String labelKey;
 
     public MetricCount() {
     }
@@ -37,6 +37,15 @@ public class MetricCount {
     public void addAverageValue(double val,int reportingComponents) {
 
         value = ((val*(reportingComponents-1)) + value)/reportingComponents;
+    }
+
+    public String getLabelKey() {
+        labelKey = label.entrySet().iterator().next().getValue();
+        return labelKey;
+    }
+
+    public void setLabelKey(String labelKey) {
+        this.labelKey = labelKey;
     }
 
     @Override

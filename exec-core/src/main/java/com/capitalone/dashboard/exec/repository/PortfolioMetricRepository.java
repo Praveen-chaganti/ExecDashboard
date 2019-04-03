@@ -2,7 +2,6 @@ package com.capitalone.dashboard.exec.repository;
 
 import com.capitalone.dashboard.exec.model.MetricType;
 import com.capitalone.dashboard.exec.model.PortfolioMetricDetail;
-import com.capitalone.dashboard.exec.model.ProductMetricDetail;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.querydsl.QueryDslPredicateExecutor;

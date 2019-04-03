@@ -1,21 +1,12 @@
 package com.capitalone.dashboard.executive.model;
 
-import java.util.List;
+
 import java.util.Map;
 
 public class LobResponse {
 
 
     private Map totalOk;
-    private List metrics;
-
-    public List getMetrics() {
-        return metrics;
-    }
-
-    public void setMetrics(List metrics) {
-        this.metrics = metrics;
-    }
 
     private int totalComponents;
 

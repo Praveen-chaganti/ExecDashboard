@@ -1,9 +1,6 @@
 package com.capitalone.dashboard.executive.model;
 
-import com.capitalone.dashboard.exec.model.ComponentMetricDetail;
 import com.capitalone.dashboard.exec.model.MetricCount;
-import com.capitalone.dashboard.exec.model.MetricSummary;
-
 import com.capitalone.dashboard.exec.model.ProductMetricDetail;
 
 import java.util.ArrayList;
