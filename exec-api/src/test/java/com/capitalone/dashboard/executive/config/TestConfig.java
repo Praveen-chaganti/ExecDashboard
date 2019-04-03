@@ -1,5 +1,6 @@
 package com.capitalone.dashboard.executive.config;
 
+import com.capitalone.dashboard.executive.service.LobService;
 import com.capitalone.dashboard.executive.service.MetricsService;
 import com.capitalone.dashboard.executive.service.PortfolioService;
 import org.mockito.Mockito;
@@ -17,6 +18,9 @@ public class TestConfig {
     public MetricsService metricsService() {
         return Mockito.mock(MetricsService.class);
     }
+
+    @Bean
+    public LobService lobService(){return Mockito.mock(LobService.class);}
 
 
 }
