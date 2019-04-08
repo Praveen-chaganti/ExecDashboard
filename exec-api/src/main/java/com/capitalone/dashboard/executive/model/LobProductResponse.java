@@ -25,7 +25,7 @@ public class LobProductResponse {
 
     private Integer totalComponents;
 
-    private Integer totalReportingComponents;
+    private Integer reportingComponents;
 
     public Integer getTotalComponents() {
         return totalComponents;
@@ -35,12 +35,12 @@ public class LobProductResponse {
         this.totalComponents = totalComponents;
     }
 
-    public Integer getTotalReportingComponents() {
-        return totalReportingComponents;
+    public Integer getReportingComponents() {
+        return reportingComponents;
     }
 
-    public void setTotalReportingComponents(Integer totalReportingComponents) {
-        this.totalReportingComponents = totalReportingComponents;
+    public void setReportingComponents(Integer reportingComponents) {
+        this.reportingComponents = reportingComponents;
     }
 
     public String getName() {
@@ -104,7 +104,7 @@ public class LobProductResponse {
         lobProductResponse.setItemType(product.getLevel().toString());
         lobProductResponse.setType(product.getType().toString());
         lobProductResponse.setTotalComponents(product.getTotalComponents());
-        lobProductResponse.setTotalReportingComponents(product.getReportingComponents());
+        lobProductResponse.setReportingComponents(product.getReportingComponents());
         //List<ComponentMetricDetail> componentMetricDetailList = product.getComponentMetricDetailList();
         //List<LobComponentResponse> componentResponses = new ArrayList<>();
         //componentMetricDetailList.forEach(componentMetricDetail -> {componentResponses.add(LobComponentResponse.getLobComponetResponse(componentMetricDetail));});
