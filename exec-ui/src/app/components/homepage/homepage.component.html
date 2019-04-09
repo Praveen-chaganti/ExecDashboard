@@ -1,0 +1,26 @@
+<div class="homepage-view" fxLayoutWrap fxLayoutAlign="start stretch" fxLayout="column">
+    <div class="view-opts-bar" fxFlexOrder="1" fxLayoutWrap fxLayoutAlign="center center" fxLayout="row" fxLayoutGap="8px">
+        <div class="input-with-icon" FlexOrder="1">
+            <input class="input" fxFlexAlign="center" placeholder="Search Executive or LOB" type="text" [(ngModel)]="searchStr">
+            <img (click)="printSome()" class="icon {{model.icon}}" src="../../../../../assets/images/{{model.icon}}.svg"/>
+        </div>
+        <button class="show-all-btn" FlexOrder="2" rounded="true" type="submit" (click)="showAllPortfolios()">Show All</button>
+    </div>
+
+    <hr fxFlexOrder="2" class="divider"/>
+    <div fxFlexOrder="3" class="guide">
+        <h2>To get started, use the search bar to filter for executives or LOBs</h2>
+    </div>
+    <div class="centerLogo" fxFlexOrder="4" fxLayoutAlign="center center" >
+
+        <div class="app-logo" fxLayoutAlign="center center" flexLayoutGap="8px">
+            <div FlexOrder="1" class="app-logo-image">
+                <img src="../../../assets/images/logo_capone_devex_hygieia.svg" />
+            </div>
+            <div FlexOrder="2" fxLayout="row" class="app-name">
+                <p fxFlexOrder="1" class="name-primary">Hygieia</p>
+                <p fxFlexOrder="2" class="platinum">Executive</p>
+            </div>
+        </div>
+    </div>
+</div>

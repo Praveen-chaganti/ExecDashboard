@@ -1,0 +1,169 @@
+.homepage-view {
+  //border: solid 1px white;
+  margin: 60px 20px 0px 20px;
+  padding: 20px 20px 20px 20px;
+  position: relative;
+  width: 80%;
+
+  .view-opts-bar {
+    //border: solid 1px yellow;
+
+    button:hover {
+      background-color: dimgrey;
+      color: white;
+    }
+
+    btn-primary:hover {
+      background-color: dimgrey;
+      color: white;
+    }
+  }
+
+  hr.divider {
+    margin-bottom: 1px;
+    margin-left: 0;
+    margin-right: 5px;
+  }
+
+  h2 {
+    font-family: OpenSans_Light;
+    font-size: 19px;
+    color: lightgrey;
+  }
+
+  .show-all-btn{
+    background-color: #021829;
+    border:none;
+    //background: transparent;
+    //border: 2px solid #2A9FD8;
+    border-radius: 25px;
+    padding: 11px;
+    color: lightgrey;
+    font-family: OpenSans_Light;
+    font-size: 16px;
+    cursor: pointer;
+    outline:none;
+  }
+  .show-all-btn:hover{
+    background-color: dimgrey;
+    color: white;
+  }
+}
+
+@media screen and (max-width: 1680px) {
+  .homepage-view{
+    width: 1358px;
+  }
+}
+
+.guide{
+  text-align: center;
+  margin-top: 20px;
+  //border: solid 1px green;
+}
+
+.centerLogo{
+  min-height: 700px;
+  //border: solid 1px orange;
+}
+
+.input:focus{
+  border:solid 2px dodgerblue;
+  box-shadow: 0px 0px 8px 0px dodgerblue;
+}
+
+.input[type="text"] {
+  background-color: #021829;
+  border: solid 2px #2A9FD8;
+  border-radius: 25px;
+  padding: 20px;
+  width:341px;
+  height: 49px;
+  color: white;
+  font-family: OpenSans_Light;
+  font-size: 14px;
+  box-sizing: border-box;
+  outline:none;
+  position: relative;
+  //z-index: 2;
+}
+
+input::-webkit-input-placeholder {
+  color: lightgrey;
+}
+
+.input-with-icon{
+  margin:0px 20px 0 20px;
+  min-width: 260px;
+  position: relative;
+  //border: solid 1px red;
+  padding: 15px 15px;
+}
+
+.input-with-icon img{
+  //border: solid 1px green;
+  border-radius: 20px;
+  padding : 8px;
+  position: absolute;
+  left: 315px;
+  top: 18px;
+  color:grey;
+  //background-color: red;
+  transition:0.3s;
+  transform: rotate(-35deg);
+  cursor: pointer;
+}
+
+.input-with-icon input[type="text"]:focus + i {
+  color: white;
+  background-color: dodgerBlue;
+  z-index: 50;
+
+}
+
+
+.app-logo {
+  margin: 0 auto;
+  max-width: 1440px;
+  padding-left: 15px;
+  width: 100%;
+
+  .app-logo-image {
+    display: inline-block;
+    min-height: 120px;
+    margin: 13px 10px 13px 0;
+    min-width: 120px;
+  }
+
+  .app-name {
+    bottom: 0;
+    display: inline-block;
+    position: relative;
+    width: 280px;
+  }
+
+  div {
+    &.app-label {
+      display: inline-block;
+      height: 40px;
+    }
+  }
+
+  p {
+    &.name-primary {
+      display: inline-block;
+      font-family: OpenSans_SemiBold, arial, sans-serif;
+      font-size: 1.5em;
+      letter-spacing: .03em;
+      margin-right: 4px;
+    }
+
+    &.platinum {
+      margin: 5px 0 0 7px;
+      display: inline-block;
+      font-family: OpenSans_Light, arial, sans-serif;
+      font-size: 1.125em;
+    }
+  }
+}
+

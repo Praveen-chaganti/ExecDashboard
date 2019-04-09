@@ -1,0 +1,8 @@
+<div class="lob-card" (click)="goToLob(name)" fxLayout fxLayoutGap="1em">
+    <div class="lob-avatar-circle">
+        <span class="initials">{{initials}}</span>
+    </div>
+    <div class="lob-card-info" fxLayout="column" fxLayoutAlign="center">
+        <p *ngIf="name" class="lob-card-name opensans-rg fs1">{{name}}</p>
+    </div>
+</div>

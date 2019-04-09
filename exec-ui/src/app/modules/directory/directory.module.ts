@@ -7,6 +7,8 @@ import { PortfolioCardsComponent } from './components/portfolio-cards/portfolio-
 import { PortfolioCardComponent } from './components/portfolio-card/portfolio-card.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {LobCardComponent} from "./components/lob-card/lob-card.component";
+import {LobCardsComponent} from "./components/lob-cards/lob-cards.component";
 
 @NgModule({
   imports: [
@@ -21,6 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DirectoryComponent,
     PortfolioCardsComponent,
     PortfolioCardComponent,
+    LobCardComponent,
+    LobCardsComponent,
   ]
 })
 

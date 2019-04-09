@@ -11,4 +11,26 @@ export class DirectoryHeadingStrategy implements Strategy<void, HeadingModel> {
 
     return model;
   }
+
+    parse_search() {
+        const model = new HeadingModel();
+        model.icon = 'search';
+        model.primaryText = '';
+        return model;
+    }
+
+    parse_enggMat() {
+        const model = new HeadingModel();
+        model.icon = 'rocket';
+        model.primaryText = 'Engineering Maturity';
+        return model;
+    }
+
+    parse_selPrtFo() {
+        const model = new HeadingModel();
+        model.icon = 'briefcase';
+        model.primaryText = 'Select a Portfolio';
+
+        return model;
+    }
 }

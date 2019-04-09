@@ -1,4 +1,60 @@
 <div class="directory-view" fxLayout="column">
+    <div class="view-opts-bar" fxFlexOrder="1" fxLayoutWrap fxLayoutAlign="center center" fxLayout="row" fxLayoutGap="8px">
+        <div class="input-with-icon" FlexOrder="1">
+            <input class="input" fxFlexAlign="center" placeholder="Search Executive or LOB" type="text" [(ngModel)]="qryString" (ngModelChange)="search()">
+            <img class="icon search" src="../../../../../assets/images/search.svg"/>
+        </div>
+        <button class="show-all-btn" FlexOrder="2" rounded="true" (click)="showAll()" type="submit">Show All</button>
+    </div>
+    <hr fxFlexOrder="2" class="divider"/>
+
+    <div fxFlexOrder="3" fxLayout="row">
+        <div fxLayout="column" fxFlexOrder="1" style="/*border:solid 1px green;*/ max-width: 48%" fxLayoutGap="25px">
+            <div class="internal1" fxLayout="row">
+                <app-heading class="app-heading-em" style="/*border:solid 1px red;*/max-width: 100%; text-align: center" FlexOrder="1" [model]="hModelEnggMat"></app-heading>
+                <img class="icon search" src="../../../../../assets/images/question.svg"/>
+            </div>
+            <div FlexOrder="2" style="/*border:solid 1px deeppink;*/"><app-lob-cards [lobs]="lobs"></app-lob-cards></div>
+            <div class="no-result" FlexOrder="3" *ngIf="isNilLob">
+                <p> No Results Found </p>
+            </div>
+        </div>
+        <br> <br>
+        <hr fxFlexOrder="2" fxLayoutGap="10px" class="v-split" style="width: 2%"/>
+        <br> <br>
+        <div fxLayout="column" fxFlexOrder="3" style="/*border:solid 1px green*/; max-width: 50%" fxLayoutGap="25px">
+            <div class="internal2" fxLayout="row">
+                <app-heading style="/*border:solid 1px red*/;max-width: 100%; text-align: center" FlexOrder="1" [model]="hModelSelPrtFo"></app-heading>
+                <img class="icon search" src="../../../../../assets/images/question.svg"/>
+            </div>
+            <div FlexOrder="2"><app-portfolio-cards [portfolios]="portfolios"></app-portfolio-cards></div>
+            <div class="no-result" FlexOrder="3" *ngIf="isNilPortfolio">
+                <p> No Results Found </p>
+            </div>
+        </div>
+    </div>
+
+    <!--<div fxFlexOrder="3" fxLayout="row" fxLayoutGap="16px">
+        <div FlexOrder="1" fxLayout="column" style="border: solid 1px red">
+            <app-heading FlexOrder="1" fxFlexAlign="center" [model]="hModelEnggMat"></app-heading>
+            <br> <br>
+            <app-portfolio-cards FlexOrder="2" fxFlexAlign="start stretch" [lobs]="lobs" ></app-portfolio-cards>
+        </div>
+        <br>
+        <hr class="v-split" FlexOrder="2" fxLayoutAlign=""/>
+        <br>
+
+        <div FlexOrder="3" fxLayout="column" style="border: solid 1px red">
+            <app-heading FlexOrder="1" fxFlexAlign="center" [model]="hModelSelPrtFo"></app-heading>
+            <br> <br>
+            <app-portfolio-cards FlexOrder="2" [portfolios]="portfolios"></app-portfolio-cards>
+        </div>
+    </div>-->
+</div>
+
+
+
+<!--<div class="directory-view" fxLayout="column">
   <div class="view-opts-bar">
     <app-heading [model]="headingModel"></app-heading>
   </div>
@@ -12,5 +68,5 @@
     </div>
   </div>
   <app-portfolio-cards [portfolios]="portfolios" ></app-portfolio-cards>
-</div>
+</div>-->
 

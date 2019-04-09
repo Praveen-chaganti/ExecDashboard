@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {animate, query, style, transition, trigger} from '@angular/animations';
+import {HomepageComponent} from "./components/homepage/homepage.component";
 
 @Component({
   selector: 'app-root',

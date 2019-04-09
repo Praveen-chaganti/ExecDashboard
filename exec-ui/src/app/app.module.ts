@@ -11,21 +11,26 @@ import {HeaderComponent} from './components/header/header.component';
 import {HeaderLogoComponent} from './components/header-logo/header-logo.component';
 import {ElementResizeDetectorService} from './services/element-resize-detector.service';
 import {MetricsModule} from './modules/metrics/metrics.module';
+import { HomepageComponent } from './components/homepage/homepage.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HeaderLogoComponent,
+    HomepageComponent,
   ],
   imports: [
     AppRoutingModule,
+      FormsModule,
+      ReactiveFormsModule,
     BrowserModule,
     HttpClientModule,
     FlexLayoutModule,
     DirectoryModule,
     MetricsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [SortingService, ElementResizeDetectorService],
   bootstrap: [AppComponent]
