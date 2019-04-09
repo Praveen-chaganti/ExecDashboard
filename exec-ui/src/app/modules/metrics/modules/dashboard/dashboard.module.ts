@@ -7,6 +7,9 @@ import {MetricBuildingBlocksMapStrategy} from './strategies/metric-building-bloc
 import {PreviewsModule} from '../previews/previews.module';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {DashboardSharedModule} from '../shared/shared.module';
+import {LobAuxiliaryTestResultFigureStrategy} from "../metrics/lob/Strategies/lob-auxiliary-testResult-figure-strategy";
+import {LobBuildingBlocksMapStrategy} from "./strategies/lob-building-blocks-map-strategy";
+import {Engg_maturity_dashboardComponent} from "./components/engg-maturity-dashboard/engg-maturity-dashboard.component";
 
 @NgModule({
   imports: [
@@ -18,13 +21,17 @@ import {DashboardSharedModule} from '../shared/shared.module';
     PreviewsModule
   ],
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    Engg_maturity_dashboardComponent
   ],
   exports: [
-    DashboardComponent
+    DashboardComponent,
+   Engg_maturity_dashboardComponent
   ],
   providers: [
-    MetricBuildingBlocksMapStrategy
+    MetricBuildingBlocksMapStrategy,
+    LobBuildingBlocksMapStrategy,
+    LobAuxiliaryTestResultFigureStrategy
   ]
 })
 

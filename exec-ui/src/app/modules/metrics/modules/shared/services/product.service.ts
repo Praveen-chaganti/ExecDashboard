@@ -18,6 +18,15 @@ export class ProductService {
       });
   }
 
+    getLobProductsByLobAndType(lob : string, type : string): Observable<BuildingBlockMetricSummary[]> {
+        return this.http.get<BuildingBlockMetricSummary[]>(`${environment.apiUrl}/metric/lob/${lob}/type/${type}/products/summary`)
+            .map((response) => response)
+            .catch((error) => {
+                console.log(error);
+                return Observable.throw(error);
+            });
+    }
+
   getPortfolioProduct(businessOwnerName: string, businessOwnerLob: string, productId: string): Observable<BuildingBlockMetricSummary> {
     return this.http.get<BuildingBlockMetricSummary>(`${environment.apiUrl}/portfolio/${businessOwnerName}/${businessOwnerLob}/products/${productId}`)
       .catch((error) => {

@@ -1,0 +1,11 @@
+<div class="dashboard-view">
+  <div class="view-opts-bar">
+    <app-heading class="app-heading-em" style="/*border:solid 1px red;*/max-width: 100%; text-align: center" FlexOrder="1" [model]="hModelEnggMat"></app-heading>
+  </div>
+  <hr class="divider"/>
+  <div class="metric-detail-content" fxLayout="row">
+    <div class="metric-product-list" [ngClass]="{'visible': this.buildingBlocks, 'hidden': !this.buildingBlocks}"fxFlex>
+      <app-engg-maturity-building-blocks [buildingBlocks]="this.buildingBlocks"></app-engg-maturity-building-blocks>
+    </div>
+  </div>
+</div>

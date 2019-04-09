@@ -13,6 +13,7 @@ import {MetricMapService} from './services/metric-map.service';
 import {BuildingBlockComponent} from './components/building-block/building-block.component';
 import {BuildingBlocksComponent} from './components/building-blocks/building-blocks.component';
 import {BuildingBlockMetricNamePipe} from './components/building-block/building-block-metric-name.pipe';
+import {EnggMaturityBuildingBlocksComponent} from "./components/engg_maturity_building-blocks/engg-maturity-building-blocks.component";
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import {BuildingBlockMetricNamePipe} from './components/building-block/building-
     MetricAuxiliaryFigureComponent,
     TotalReportingComponent,
     TotalReportingPipe,
-    TotalReportingPercentPipe
+    TotalReportingPercentPipe,
+    EnggMaturityBuildingBlocksComponent
   ],
   exports: [
     BuildingBlockComponent,
@@ -42,7 +44,8 @@ import {BuildingBlockMetricNamePipe} from './components/building-block/building-
     MetricAuxiliaryFigureComponent,
     TotalReportingComponent,
     TotalReportingPipe,
-    TotalReportingPercentPipe
+    TotalReportingPercentPipe,
+    EnggMaturityBuildingBlocksComponent
   ],
   providers: [
     MetricMapService
