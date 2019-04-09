@@ -4,7 +4,7 @@ import {Injectable} from '@angular/core';
 import {MetricValueModel} from '../../../shared/component-models/metric-value-model';
 
 @Injectable()
-export class LobAuxiliaryTestResultFigureStrategy implements Strategy<MetricSummary, MetricValueModel[]> {
+export class LobAuxiliaryFigureStrategy implements Strategy<MetricSummary, MetricValueModel[]> {
   parse(model: MetricSummary) {
 
       const validSet = new Set(['TEST_RESULT','STATIC_SECURITY_ANALYSIS','LIBRARY_POLICY','CODE_QUALITY','CODE_REVIEW','PERF_TEST']);

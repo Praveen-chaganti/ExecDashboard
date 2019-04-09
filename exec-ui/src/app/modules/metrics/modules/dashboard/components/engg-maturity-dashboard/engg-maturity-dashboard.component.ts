@@ -12,6 +12,7 @@ import {DirectoryHeadingStrategy} from "../../../../../directory/strategies/dire
 import {nsend} from "q";
 import {MetricDetailModel} from "../../../shared/component-models/metric-detail-model";
 import {LobBuildingBlocksMapStrategy} from "../../strategies/lob-building-blocks-map-strategy";
+import {TitleCasePipe} from "@angular/common";
 
 @Component({
     selector: 'app-engg_maturity_dashboard',
@@ -20,7 +21,8 @@ import {LobBuildingBlocksMapStrategy} from "../../strategies/lob-building-blocks
     providers: [
         PortfolioService,
         ProductService,
-        DirectoryHeadingStrategy
+        DirectoryHeadingStrategy,
+        TitleCasePipe
     ]
 })
 export class Engg_maturity_dashboardComponent implements OnInit {
@@ -43,20 +45,19 @@ export class Engg_maturity_dashboardComponent implements OnInit {
                 private portfolioService: PortfolioService,
                 private productService: ProductService,
                 private metricBuildingBlocksMapStrategy: MetricBuildingBlocksMapStrategy,
-                private lobBuildingBlockStrategy: LobBuildingBlocksMapStrategy) {
+                private lobBuildingBlockStrategy: LobBuildingBlocksMapStrategy,
+                private titlecasePipe: TitleCasePipe) {
     }
 
 
     ngOnInit() {
         this.route.params.subscribe((params: Params) => {
             this.lobName = params['lob-name'];
-            this.portfolioName = params['portfolio-name']
-
 
         });
         this.hModelEnggMat = this.getHeadingModel();
         // TODO: need to design separate service fop getting products on LOB level
-        this.productService.getLobProductsByLobAndType("Commercial Tech","AUDITRESULT")
+        this.productService.getLobProductsByLobAndType(this.titlecasePipe.transform(this.lobName),"AUDITRESULT")
             .subscribe(
                 result => {
                     console.log(result)

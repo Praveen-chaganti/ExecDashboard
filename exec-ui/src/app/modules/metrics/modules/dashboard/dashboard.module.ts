@@ -7,8 +7,8 @@ import {MetricBuildingBlocksMapStrategy} from './strategies/metric-building-bloc
 import {PreviewsModule} from '../previews/previews.module';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {DashboardSharedModule} from '../shared/shared.module';
-import {LobAuxiliaryTestResultFigureStrategy} from "../metrics/lob/Strategies/lob-auxiliary-testResult-figure-strategy";
 import {LobBuildingBlocksMapStrategy} from "./strategies/lob-building-blocks-map-strategy";
+import {LobAuxiliaryFigureStrategy} from "../metrics/lob/Strategies/lob-auxiliary-figure-strategy";
 import {Engg_maturity_dashboardComponent} from "./components/engg-maturity-dashboard/engg-maturity-dashboard.component";
 
 @NgModule({
@@ -31,7 +31,7 @@ import {Engg_maturity_dashboardComponent} from "./components/engg-maturity-dashb
   providers: [
     MetricBuildingBlocksMapStrategy,
     LobBuildingBlocksMapStrategy,
-    LobAuxiliaryTestResultFigureStrategy
+    LobAuxiliaryFigureStrategy
   ]
 })
 

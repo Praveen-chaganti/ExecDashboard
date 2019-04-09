@@ -6,18 +6,17 @@ import {Strategy} from '../../../../shared/strategies/strategy';
 import {NavigationModel} from '../../../../shared/component-models/navigation-model';
 import {Injectable} from '@angular/core';
 import {MetricMapService} from '../../shared/services/metric-map.service';
-import {TraceabilityConfiguration} from "../../metrics/traceability/traceability.configuration";
-import {LobAuxiliaryTestResultFigureStrategy} from "../../metrics/lob/Strategies/lob-auxiliary-testResult-figure-strategy";
+import {LobAuxiliaryFigureStrategy} from "../../metrics/lob/Strategies/lob-auxiliary-figure-strategy";
 
 @Injectable()
 export class LobBuildingBlocksMapStrategy implements Strategy<BuildingBlockMetricSummary[], Map<string, BuildingBlockModel[]>> {
 
     constructor(private metricMapService: MetricMapService,
-                private lobAuxilaryStrategy: LobAuxiliaryTestResultFigureStrategy ) { }
+                private lobAuxilaryStrategy: LobAuxiliaryFigureStrategy) { }
 
     parse(model: BuildingBlockMetricSummary[]): Map<string, BuildingBlockModel[]> {
         const map = new Map<string, BuildingBlockModel[]>();
-        for (const metricType of Array.from(this.metricMapService.metrics().keys())) {
+        for (const metricType of ['auditResult']) {
             map.set(metricType, model
                 .map(p => ({
                     id: p.id,

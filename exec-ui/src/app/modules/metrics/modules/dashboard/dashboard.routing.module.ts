@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {Routes, RouterModule} from '@angular/router';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
+import {Engg_maturity_dashboardComponent} from "./components/engg-maturity-dashboard/engg-maturity-dashboard.component";
 
 const routes: Routes = [
   {
@@ -18,7 +19,11 @@ const routes: Routes = [
     path: '',
     redirectTo: 'portfolio/:portfolio-name/:portfolio-lob',
     pathMatch: 'full',
-  }
+  },
+    {
+        path: 'lob/:lob-name',
+        component: Engg_maturity_dashboardComponent
+    }
 ];
 
 @NgModule({
