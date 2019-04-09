@@ -15,6 +15,12 @@ public interface PortfolioMetricRepository
     PortfolioMetricDetail findByNameAndLobAndType (String name, String lob, MetricType type);
     List<PortfolioMetricDetail> findByNameAndLob (String name, String lob);
 
+    List<PortfolioMetricDetail> findAllByLobAndType(String lob, MetricType type);
+
+    @Query(value="{ 'productMetricDetailList.name': ?0}")
+    List<PortfolioMetricDetail> findByLobAndType(String lob, MetricType type);
+
+
     @Query(value="{ 'name' : ?0, 'lob': ?1, 'type': ?2, 'productMetricDetailList.name': ?3}")
     PortfolioMetricDetail findByNameAndLobAndTypeAndProductName(String name, String lob, MetricType type, String productName);
 
