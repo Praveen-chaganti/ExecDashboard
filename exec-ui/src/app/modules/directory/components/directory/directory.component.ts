@@ -17,7 +17,7 @@ export class DirectoryComponent implements OnInit {
 
   @Input() public heading = 'Select an Executive';
   public portfolios = new Array<Portfolio>();
-  public lobList = ['360', 'CARD', 'COAF', 'COMMERCIAL', 'DIGITAL', 'INFOSEC', 'RETAIL BANK', 'SHARED TECH'];
+  public lobList = ['360', 'CARD', 'COAF', 'COMMERCIAL', 'DIGITAL', 'INFOSEC', 'RETAIL BANK', 'SHARED TECH', 'CYBER TECH'];
   public lobs = new Array<Lob>();
   public allLobs = new Array<Lob>();
   public allPortfolios = new Array<Portfolio>();

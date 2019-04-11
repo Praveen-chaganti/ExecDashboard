@@ -1,5 +1,6 @@
 package com.capitalone.dashboard.executive.model;
 
+import com.capitalone.dashboard.exec.model.ComponentMetricDetail;
 import com.capitalone.dashboard.exec.model.MetricCount;
 import com.capitalone.dashboard.exec.model.ProductMetricDetail;
 
@@ -92,8 +93,6 @@ public class LobProductResponse {
         this.metrics = metrics;
     }
 
-
-
     public static LobProductResponse getLobProductResponse(ProductMetricDetail product, String labelType){
         if(product == null){
             return null;
@@ -105,10 +104,10 @@ public class LobProductResponse {
         lobProductResponse.setType(product.getType().toString());
         lobProductResponse.setTotalComponents(product.getTotalComponents());
         lobProductResponse.setReportingComponents(product.getReportingComponents());
-        //List<ComponentMetricDetail> componentMetricDetailList = product.getComponentMetricDetailList();
-        //List<LobComponentResponse> componentResponses = new ArrayList<>();
-        //componentMetricDetailList.forEach(componentMetricDetail -> {componentResponses.add(LobComponentResponse.getLobComponetResponse(componentMetricDetail));});
-        //lobProductResponse.setComponentMetricDetailsList(componentResponses);
+        List<ComponentMetricDetail> componentMetricDetailList = product.getComponentMetricDetailList();
+        List<LobComponentResponse> componentResponses = new ArrayList<>();
+        componentMetricDetailList.forEach(componentMetricDetail -> {componentResponses.add(LobComponentResponse.getLobComponetResponse(componentMetricDetail));});
+        lobProductResponse.setComponentMetricDetailsList(componentResponses);
 
         List<MetricCount> metricCounts = new ArrayList<>();
         if (labelType == null) {

@@ -19,7 +19,7 @@ export class LobBuildingBlocksMapStrategy implements Strategy<BuildingBlockMetri
         for (const metricType of ['auditResult']) {
             map.set(metricType, model
                 .map(p => ({
-                    id: p.id,
+                    id: p.name,
                     name: p.name,
                     commonName: p.commonName,
                     dashboardDisplayName: p.dashboardDisplayName,
@@ -56,12 +56,14 @@ export class LobBuildingBlocksMapStrategy implements Strategy<BuildingBlockMetri
         if (!metric) {
             return [];
         }
+
         const auxmetric = this.lobAuxilaryStrategy.parse(metric);
         console.log(auxmetric)
         let result = [];
         auxmetric.forEach(value => {
             result.push(mapTestResultMetric(value))
         })
+        console.log(result)
 
         return result
 
@@ -80,7 +82,7 @@ export class LobBuildingBlocksMapStrategy implements Strategy<BuildingBlockMetri
         const metric = buildingBlockMetricSummary.metrics.find(m => m.name === metricName);
 
         if (metric) {
-            navigationModel.commands = [metric.name, 'product', buildingBlockMetricSummary.id];
+            navigationModel.commands = [metric.name, 'product', buildingBlockMetricSummary.name];
         } else {
             navigationModel.commands = [];
         }

@@ -34,7 +34,6 @@ export class LobAuxiliaryFigureStrategy implements Strategy<MetricSummary, Metri
       if(sums.get('PERF_TEST')){
           result.push({name : 'PERF_TEST', value : sums.get('PERF_TEST').toLocaleString()});
       }
-      console.log(result)
       return result;
   }
 }

@@ -57,7 +57,7 @@ public class LobServiceImpl implements LobService {
      * @return
      */
     @Override
-    public List<LobProductResponse> getProductByLobAndProductName(String lob,MetricType type, String name) {
+    public LobProductResponse getProductByLobAndProductName(String lob,MetricType type, String name) {
         List<LobProductResponse> lobProductResponse = new ArrayList<>();
         List<PortfolioMetricDetail> lobMetrics = portfolioMetricRepository.findAllByLobAndType(lob,type );
         Optional.ofNullable(lobMetrics).orElseGet(Collections::emptyList)
@@ -65,7 +65,7 @@ public class LobServiceImpl implements LobService {
                 .stream().filter(p -> p.getName().equalsIgnoreCase(name)).collect(Collectors.toList()).forEach(productMetricDetail -> {lobProductResponse.add(LobProductResponse.getLobProductResponse(productMetricDetail,null));});});
 
 
-        return lobProductResponse;
+        return lobProductResponse.get(0);
     }
 
     /**

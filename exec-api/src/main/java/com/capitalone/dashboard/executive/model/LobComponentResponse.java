@@ -3,8 +3,13 @@ package com.capitalone.dashboard.executive.model;
 import com.capitalone.dashboard.exec.model.ComponentMetricDetail;
 import com.capitalone.dashboard.exec.model.MetricSummary;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LobComponentResponse {
     private String name;
+
+    private String commonName;
 
     private String lob;
 
@@ -12,7 +17,7 @@ public class LobComponentResponse {
 
     private String type;
 
-    private MetricSummary summary;
+    private List<MetricSummary> metrics;
 
     public String getName() {
         return name;
@@ -20,6 +25,14 @@ public class LobComponentResponse {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCommonName() {
+        return commonName;
+    }
+
+    public void setCommonName(String commonName) {
+        this.commonName = commonName;
     }
 
     public String getLob() {
@@ -46,24 +59,27 @@ public class LobComponentResponse {
         this.type = type;
     }
 
-    public MetricSummary getSummary() {
-        return summary;
+    public List<MetricSummary> getMetrics() {
+        return metrics;
     }
 
-    public void setSummary(MetricSummary summary) {
-        this.summary = summary;
+    public void setMetrics(List<MetricSummary> summary) {
+        this.metrics = summary;
     }
 
     public static LobComponentResponse getLobComponetResponse(ComponentMetricDetail componentMetricDetail){
         if(componentMetricDetail == null){
             return null;
         }
+        List<MetricSummary> componentSummary = new ArrayList<>();
+        componentSummary.add(componentMetricDetail.getSummary());
         LobComponentResponse lobComponentResponse = new LobComponentResponse();
         lobComponentResponse.setName(componentMetricDetail.getName());
+        lobComponentResponse.setCommonName(componentMetricDetail.getItem().getCommonName());
         lobComponentResponse.setLob(componentMetricDetail.getLob());
         lobComponentResponse.setLevel(componentMetricDetail.getLevel().toString());
         lobComponentResponse.setType(componentMetricDetail.getType().toString());
-        lobComponentResponse.setSummary(componentMetricDetail.getSummary());
+        lobComponentResponse.setMetrics(componentSummary);
         return lobComponentResponse;
 
 

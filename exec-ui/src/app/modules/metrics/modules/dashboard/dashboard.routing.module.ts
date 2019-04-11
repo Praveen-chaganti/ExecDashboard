@@ -2,7 +2,8 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {Routes, RouterModule} from '@angular/router';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
-import {Engg_maturity_dashboardComponent} from "./components/engg-maturity-dashboard/engg-maturity-dashboard.component";
+import {Engg_maturity_dashboardComponent} from "./components/engx/engg-maturity-dashboard/engg-maturity-dashboard.component";
+import {EnggMaturityProductDetailComponent} from "./components/engx/engg-maturity-product-detail/engg-maturity-product-detail.component";
 
 const routes: Routes = [
   {
@@ -20,13 +21,16 @@ const routes: Routes = [
     redirectTo: 'portfolio/:portfolio-name/:portfolio-lob',
     pathMatch: 'full',
   },
-    {
-        path: 'lob/:lob-name',
-        component: Engg_maturity_dashboardComponent
+  { path: 'lob/:lob-name',
+    component: Engg_maturity_dashboardComponent
+  },
+    { path: 'lob/:lob-name/auditResult/product/:product-id',
+      component: EnggMaturityProductDetailComponent
     }
 ];
 
 @NgModule({
+
   imports: [
     CommonModule,
     RouterModule.forChild(routes)

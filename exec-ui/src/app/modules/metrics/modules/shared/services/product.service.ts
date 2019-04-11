@@ -27,6 +27,15 @@ export class ProductService {
             });
     }
 
+    getLobProductByID(lob : string ,type : string, productId : string): Observable<BuildingBlockMetricSummary[]>{
+        return this.http.get<BuildingBlockMetricSummary[]>(`${environment.apiUrl}/metric/lob/${lob}/type/${type}/product/${productId}/summary`)
+            .map((response) => response)
+            .catch((error) => {
+                console.log(error);
+                return Observable.throw(error);
+            });
+    }
+
   getPortfolioProduct(businessOwnerName: string, businessOwnerLob: string, productId: string): Observable<BuildingBlockMetricSummary> {
     return this.http.get<BuildingBlockMetricSummary>(`${environment.apiUrl}/portfolio/${businessOwnerName}/${businessOwnerLob}/products/${productId}`)
       .catch((error) => {

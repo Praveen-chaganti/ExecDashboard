@@ -9,7 +9,10 @@ import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {DashboardSharedModule} from '../shared/shared.module';
 import {LobBuildingBlocksMapStrategy} from "./strategies/lob-building-blocks-map-strategy";
 import {LobAuxiliaryFigureStrategy} from "../metrics/lob/Strategies/lob-auxiliary-figure-strategy";
-import {Engg_maturity_dashboardComponent} from "./components/engg-maturity-dashboard/engg-maturity-dashboard.component";
+import {Engg_maturity_dashboardComponent} from "./components/engx/engg-maturity-dashboard/engg-maturity-dashboard.component";
+import {EnggMaturityProductDetailComponent} from "./components/engx/engg-maturity-product-detail/engg-maturity-product-detail.component";
+import {LobComponentBuildingBlocksMapStrategy} from "./strategies/lob-component-building-blocks-map-strategy";
+import {LobProductDetailStrategy} from "../metrics/lob/Strategies/lob-product-detail-strategy";
 
 @NgModule({
   imports: [
@@ -22,16 +25,20 @@ import {Engg_maturity_dashboardComponent} from "./components/engg-maturity-dashb
   ],
   declarations: [
     DashboardComponent,
-    Engg_maturity_dashboardComponent
+    Engg_maturity_dashboardComponent,
+    EnggMaturityProductDetailComponent
   ],
   exports: [
     DashboardComponent,
-   Engg_maturity_dashboardComponent
+   Engg_maturity_dashboardComponent,
+   EnggMaturityProductDetailComponent
   ],
   providers: [
     MetricBuildingBlocksMapStrategy,
     LobBuildingBlocksMapStrategy,
-    LobAuxiliaryFigureStrategy
+    LobAuxiliaryFigureStrategy,
+    LobComponentBuildingBlocksMapStrategy,
+    LobProductDetailStrategy
   ]
 })
 

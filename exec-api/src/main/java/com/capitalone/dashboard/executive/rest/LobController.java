@@ -26,7 +26,7 @@ public class LobController {
 
     }
     @GetMapping("/lob/{lob}/type/{type}/product/{name}/summary")
-    public List<LobProductResponse> getProductByNameAndLob(@PathVariable("lob") String lob,
+    public LobProductResponse getProductByNameAndLob(@PathVariable("lob") String lob,
                                                            @PathVariable("name") String name,
                                                            @PathVariable("type") MetricType type){
         return lobService.getProductByLobAndProductName(lob,type,name);

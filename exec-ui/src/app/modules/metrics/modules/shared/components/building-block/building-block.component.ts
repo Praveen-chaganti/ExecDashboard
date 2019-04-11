@@ -9,6 +9,7 @@ import {BuildingBlockModel} from '../../component-models/building-block-model';
 })
 export class BuildingBlockComponent implements OnInit {
   @Input() public buildingBlock: BuildingBlockModel;
+
   @Input() public isComponent: boolean;
 
   constructor(private router: Router,
@@ -19,16 +20,21 @@ export class BuildingBlockComponent implements OnInit {
   }
 
   gotToBuildingBlockDetails() {
+    console.log(this.buildingBlock)
     localStorage.clear()
     if (!!this.isComponent) {
       window.open(this.buildingBlock.detail.url, '_blank');
     } else {
       if (!this.buildingBlock.detail) {
+        console.log('hi1')
         this.router.navigate(['product', this.buildingBlock.id], {relativeTo: this.route});
       } else if (this.buildingBlock.detail.url) {
-        this.router.navigateByUrl(this.buildingBlock.detail.url);
+          console.log('hi2')
+          this.router.navigateByUrl(this.buildingBlock.detail.url);
       } else {
-        this.router.navigate(this.buildingBlock.detail.commands, {relativeTo: this.route});
+          console.log('hi3')
+
+          this.router.navigate(this.buildingBlock.detail.commands, {relativeTo: this.route});
       }
     }
   }

@@ -12,7 +12,7 @@ public interface LobService {
 
     List<LobProductResponse> getLobProducts(String lob, MetricType type);
 
-    List<LobProductResponse> getProductByLobAndProductName(String lob,MetricType type, String name);
+    LobProductResponse getProductByLobAndProductName(String lob,MetricType type, String name);
 
     List<LobProductResponse> getProductByLobAndProductNameAndLabelType(String lob, MetricType type, String labelType);
 

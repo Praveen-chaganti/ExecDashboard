@@ -1,17 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {Params, ActivatedRoute, Router} from '@angular/router';
-import {PortfolioService} from '../../../../../shared/shared.module';
-import {Portfolio} from '../../../../../shared/domain-models/portfolio';
-import {ProductService} from '../../../shared/services/product.service';
-import {BuildingBlockModel} from '../../../shared/component-models/building-block-model';
-import {HeadingModel} from '../../../../../shared/component-models/heading-model';
-import {MetricBuildingBlocksMapStrategy} from '../../strategies/metric-building-blocks-map-strategy';
-import {SCMCommitsConfiguration} from '../../../metrics/scm-commits/scm-commits.configuration';
-import {ItemType} from '../../../shared/component-models/item-type';
-import {DirectoryHeadingStrategy} from "../../../../../directory/strategies/directory-heading-strategy";
+import {PortfolioService} from '../../../../../../shared/shared.module';
+import {Portfolio} from '../../../../../../shared/domain-models/portfolio';
+import {ProductService} from '../../../../shared/services/product.service';
+import {BuildingBlockModel} from '../../../../shared/component-models/building-block-model';
+import {HeadingModel} from '../../../../../../shared/component-models/heading-model';
+import {MetricBuildingBlocksMapStrategy} from '../../../strategies/metric-building-blocks-map-strategy';
+import {SCMCommitsConfiguration} from '../../../../metrics/scm-commits/scm-commits.configuration';
+import {ItemType} from '../../../../shared/component-models/item-type';
+import {DirectoryHeadingStrategy} from "../../../../../../directory/strategies/directory-heading-strategy";
 import {nsend} from "q";
-import {MetricDetailModel} from "../../../shared/component-models/metric-detail-model";
-import {LobBuildingBlocksMapStrategy} from "../../strategies/lob-building-blocks-map-strategy";
+import {MetricDetailModel} from "../../../../shared/component-models/metric-detail-model";
+import {LobBuildingBlocksMapStrategy} from "../../../strategies/lob-building-blocks-map-strategy";
 import {TitleCasePipe} from "@angular/common";
 
 @Component({
@@ -64,7 +64,6 @@ export class Engg_maturity_dashboardComponent implements OnInit {
                     this.metricToBuildingBlocksMap = this.lobBuildingBlockStrategy.parse(result);
                     // TODO: need to filter based on the LOB name
                     this.buildingBlocks = this.metricToBuildingBlocksMap.get('auditResult');
-                    console.log(this.buildingBlocks)
 
                     this.hModelEnggMat = this.getHeadingModel();
                 },
