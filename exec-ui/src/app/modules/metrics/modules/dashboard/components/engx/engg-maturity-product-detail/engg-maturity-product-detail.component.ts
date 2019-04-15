@@ -6,10 +6,12 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 import {ProductService} from "../../../../shared/services/product.service";
 import {PortfolioService} from "../../../../../../shared/shared.module";
 import {TitleCasePipe} from "@angular/common";
-import {LobBuildingBlocksMapStrategy} from "../../../strategies/lob-building-blocks-map-strategy";
 import {DirectoryHeadingStrategy} from "../../../../../../directory/strategies/directory-heading-strategy";
 import {BuildingBlockModel} from "../../../../shared/component-models/building-block-model";
 import {LobComponentBuildingBlocksMapStrategy} from "../../../strategies/lob-component-building-blocks-map-strategy";
+import {LobComponentGrphStrategy} from "../../../../metrics/lob/Strategies/lob-component-grph-strategy";
+import {MetricDetail} from "../../../../shared/domain-models/metric-detail";
+import {MetricGraphModel} from "../../../../shared/component-models/metric-graph-model";
 
 @Component({
   selector: 'app-engg-maturity-product-detail',
@@ -30,6 +32,7 @@ export class EnggMaturityProductDetailComponent implements OnInit {
     public productId: string;
     public buildingBlocks: BuildingBlockModel[];
     public metricDetailView: MetricDetailModel;
+    public metricGraphModel: MetricGraphModel
     public showBuildingBlocks: boolean=true;
 
     private metricToBuildingBlocksMap = new Map<string, BuildingBlockModel[]>();
@@ -41,6 +44,7 @@ export class EnggMaturityProductDetailComponent implements OnInit {
                 private productService: ProductService,
                 private metricBuildingBlocksMapStrategy: MetricBuildingBlocksMapStrategy,
                 private lobComponetBuildingBlockStrategy: LobComponentBuildingBlocksMapStrategy,
+                private lobGraphStrategy : LobComponentGrphStrategy,
                 private titlecasePipe: TitleCasePipe) {
     }
 
@@ -49,7 +53,6 @@ export class EnggMaturityProductDetailComponent implements OnInit {
         this.route.params.subscribe((params: Params) => {
             this.lobName = params['lob-name'];
             this.productId = params['product-id']
-            console.log(params)
 
         });
         this.hModelEnggMat = this.getHeadingModel();
@@ -58,6 +61,22 @@ export class EnggMaturityProductDetailComponent implements OnInit {
                 result => {
                     this.metricToBuildingBlocksMap = this.lobComponetBuildingBlockStrategy.parse(result['componentMetricDetailsList']);
                     this.buildingBlocks = this.metricToBuildingBlocksMap.get('auditResult');
+
+                    this.hModelEnggMat = this.getHeadingModel();
+                },
+                error => console.log(error)
+            );
+
+
+        this.productService.getLobProductDetails(this.titlecasePipe.transform(this.lobName),'AUDITRESULT',this.productId)
+            .subscribe(
+                result => {
+                    const metricDetail = new MetricDetail();
+                    metricDetail.summary = result['summary'];
+                    metricDetail.timeSeries = result['timeSeries'];
+                    this.metricGraphModel = this.lobGraphStrategy.parse(metricDetail);
+                    console.log(this.metricDetailView)
+
 
                     this.hModelEnggMat = this.getHeadingModel();
                 },
@@ -85,7 +104,7 @@ export class EnggMaturityProductDetailComponent implements OnInit {
     getReturnRouteModel() {
         return {
             label: 'Change Product',
-            commands: ['directory'],
+            commands: ['lob',this.lobName],
             extras: {}
         };
     }

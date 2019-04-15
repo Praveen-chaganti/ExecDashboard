@@ -4,9 +4,7 @@
   </div>
   <hr class="divider"/>
   <div class="metric-detail-content" fxLayout="row">
-    <app-metric-graph [model]="this.metricDetailView"></app-metric-graph>
-
-    <div class="metric-detail" fxFlex></div>
+    <app-metric-graph [model]="this.metricGraphModel"></app-metric-graph>
     <div class="metric-product-list" [ngClass]="{'visible': this.buildingBlocks, 'hidden': !this.buildingBlocks}"fxFlex>
       <app-building-blocks [buildingBlocks]="this.buildingBlocks" [isComponentList]="!!this.productId"></app-building-blocks>
     </div>

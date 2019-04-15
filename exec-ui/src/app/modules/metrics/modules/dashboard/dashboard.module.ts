@@ -13,6 +13,8 @@ import {Engg_maturity_dashboardComponent} from "./components/engx/engg-maturity-
 import {EnggMaturityProductDetailComponent} from "./components/engx/engg-maturity-product-detail/engg-maturity-product-detail.component";
 import {LobComponentBuildingBlocksMapStrategy} from "./strategies/lob-component-building-blocks-map-strategy";
 import {LobProductDetailStrategy} from "../metrics/lob/Strategies/lob-product-detail-strategy";
+import {LobComponentGrphStrategy} from "../metrics/lob/Strategies/lob-component-grph-strategy";
+import {LobGraphTrendStrategy} from "../metrics/lob/Strategies/lob-graph-trend-strategy";
 
 @NgModule({
   imports: [
@@ -38,7 +40,9 @@ import {LobProductDetailStrategy} from "../metrics/lob/Strategies/lob-product-de
     LobBuildingBlocksMapStrategy,
     LobAuxiliaryFigureStrategy,
     LobComponentBuildingBlocksMapStrategy,
-    LobProductDetailStrategy
+    LobProductDetailStrategy,
+    LobComponentGrphStrategy,
+    LobGraphTrendStrategy
   ]
 })
 

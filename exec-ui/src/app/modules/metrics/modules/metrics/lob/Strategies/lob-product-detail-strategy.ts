@@ -17,22 +17,22 @@ export class LobProductDetailStrategy implements Strategy<MetricSummary, MetricV
         let result = [];
 
         if(sums.get('TEST_RESULT')){
-            result.push({name : 'TEST_RESULT', value : sums.get('TEST_RESULT')});
+            result.push({name : 'FeatureTest', value : sums.get('TEST_RESULT')});
         }
         if(sums.get('STATIC_SECURITY_ANALYSIS')){
             result.push({name : 'SSA', value : sums.get('STATIC_SECURITY_ANALYSIS')});
         }
         if(sums.get('LIBRARY_POLICY')){
-            result.push({name : 'LIBRARY_POLICY', value : sums.get('LIBRARY_POLICY')});
+            result.push({name : 'OSS', value : sums.get('LIBRARY_POLICY')});
         }
         if(sums.get('CODE_QUALITY')){
-            result.push({name : 'CODE_QUALITY', value : sums.get('CODE_QUALITY')});
+            result.push({name : 'SCA', value : sums.get('CODE_QUALITY')});
         }
         if(sums.get('CODE_REVIEW')){
-            result.push({name : 'CODE_REVIEW', value : sums.get('CODE_REVIEW')});
+            result.push({name : 'Peer Review', value : sums.get('CODE_REVIEW')});
         }
         if(sums.get('PERF_TEST')){
-            result.push({name : 'PERF_TEST', value : sums.get('PERF_TEST')});
+            result.push({name : 'PT', value : sums.get('PERF_TEST')});
         }
         return result;
     }

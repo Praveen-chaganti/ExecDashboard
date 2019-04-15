@@ -1,6 +1,7 @@
 package com.capitalone.dashboard.executive.rest;
 
 
+import com.capitalone.dashboard.exec.model.MetricDetails;
 import com.capitalone.dashboard.exec.model.MetricType;
 import com.capitalone.dashboard.executive.model.LobProductResponse;
 import com.capitalone.dashboard.executive.model.LobResponse;
@@ -32,6 +33,12 @@ public class LobController {
         return lobService.getProductByLobAndProductName(lob,type,name);
     }
 
+    @GetMapping("/lob/{lob}/type/{type}/product/{name}/details")
+    public MetricDetails getProductMetricDetails(@PathVariable("lob") String lob,
+                                                @PathVariable("name") String name,
+                                                @PathVariable("type") MetricType type){
+        return lobService.getProductMetricDetails(lob,type,name);
+    }
 
     @GetMapping("/lob/{lob}/type/{type}/products/summary/label/{labelType}")
     public List<LobProductResponse> getLobProduce(@PathVariable("lob") String lob,
@@ -48,6 +55,8 @@ public class LobController {
         return lobService.getLobLevelInformation(lob,metricType);
 
     }
+
+
 
 
 }

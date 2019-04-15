@@ -1,8 +1,6 @@
 package com.capitalone.dashboard.executive.service;
 
-import com.capitalone.dashboard.exec.model.MetricType;
-import com.capitalone.dashboard.exec.model.PortfolioMetricDetail;
-import com.capitalone.dashboard.exec.model.MetricCount;
+import com.capitalone.dashboard.exec.model.*;
 import com.capitalone.dashboard.exec.repository.PortfolioMetricRepository;
 import com.capitalone.dashboard.executive.model.LobProductResponse;
 import com.capitalone.dashboard.executive.model.LobResponse;
@@ -126,6 +124,20 @@ public class LobServiceImpl implements LobService {
         lobResponse.setTotalRreportingComponets((int) totalReport.getSum());
 
         return lobResponse;
+    }
+
+    @Override
+    public MetricDetails getProductMetricDetails(String lob, MetricType type, String name) {
+        List<PortfolioMetricDetail> lobMetrics = portfolioMetricRepository.findAllByLobAndType(lob,type );
+        List<ProductMetricDetail> productMetricDetailList = new ArrayList<>();
+
+
+        Optional.ofNullable(lobMetrics).orElseGet(Collections::emptyList)
+                .stream().forEach(portfolioMetricDetail -> {portfolioMetricDetail.getProductMetricDetailList()
+                .stream().forEach(productMetricDetail -> {productMetricDetailList.add(productMetricDetail);});});
+
+        return productMetricDetailList.stream().filter(productMetricDetail -> productMetricDetail.getName().equalsIgnoreCase(name)).findFirst().orElseGet(null);
+
     }
 
 

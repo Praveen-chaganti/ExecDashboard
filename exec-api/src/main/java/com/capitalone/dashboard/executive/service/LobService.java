@@ -1,6 +1,7 @@
 package com.capitalone.dashboard.executive.service;
 
 
+import com.capitalone.dashboard.exec.model.MetricDetails;
 import com.capitalone.dashboard.exec.model.MetricType;
 import com.capitalone.dashboard.executive.model.LobProductResponse;
 import com.capitalone.dashboard.executive.model.LobResponse;
@@ -17,6 +18,8 @@ public interface LobService {
     List<LobProductResponse> getProductByLobAndProductNameAndLabelType(String lob, MetricType type, String labelType);
 
     LobResponse getLobLevelInformation(String lob, MetricType type);
+
+    MetricDetails getProductMetricDetails(String lob,MetricType type, String name);
 
 
 

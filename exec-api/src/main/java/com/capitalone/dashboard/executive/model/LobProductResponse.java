@@ -2,6 +2,7 @@ package com.capitalone.dashboard.executive.model;
 
 import com.capitalone.dashboard.exec.model.ComponentMetricDetail;
 import com.capitalone.dashboard.exec.model.MetricCount;
+import com.capitalone.dashboard.exec.model.MetricSummary;
 import com.capitalone.dashboard.exec.model.ProductMetricDetail;
 
 import java.util.ArrayList;
@@ -24,9 +25,23 @@ public class LobProductResponse {
 
     private List metrics;
 
+
+    private  List timeSeries;
+
+
     private Integer totalComponents;
 
     private Integer reportingComponents;
+
+    private MetricSummary summary;
+
+    public MetricSummary getSummary() {
+        return summary;
+    }
+
+    public void setSummary(MetricSummary summary) {
+        this.summary = summary;
+    }
 
     public Integer getTotalComponents() {
         return totalComponents;
@@ -76,6 +91,14 @@ public class LobProductResponse {
         this.type = type;
     }
 
+    public List getTimeSeries() {
+        return timeSeries;
+    }
+
+    public void setTimeSeries(List timeSeries) {
+        this.timeSeries = timeSeries;
+    }
+
 
     public List<LobComponentResponse> getComponentMetricDetailsList() {
         return componentMetricDetailsList;
@@ -104,6 +127,8 @@ public class LobProductResponse {
         lobProductResponse.setType(product.getType().toString());
         lobProductResponse.setTotalComponents(product.getTotalComponents());
         lobProductResponse.setReportingComponents(product.getReportingComponents());
+        lobProductResponse.setTimeSeries(product.getTimeSeries());
+        lobProductResponse.setSummary(null);
         List<ComponentMetricDetail> componentMetricDetailList = product.getComponentMetricDetailList();
         List<LobComponentResponse> componentResponses = new ArrayList<>();
         componentMetricDetailList.forEach(componentMetricDetail -> {componentResponses.add(LobComponentResponse.getLobComponetResponse(componentMetricDetail));});

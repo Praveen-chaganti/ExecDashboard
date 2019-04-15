@@ -3,6 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../../../environments/environment';
 import {BuildingBlockMetricSummary} from '../domain-models/building-block-metric-summary';
+import {MetricDetail} from "../domain-models/metric-detail";
 
 @Injectable()
 export class ProductService {
@@ -28,7 +29,16 @@ export class ProductService {
     }
 
     getLobProductByID(lob : string ,type : string, productId : string): Observable<BuildingBlockMetricSummary[]>{
-        return this.http.get<BuildingBlockMetricSummary[]>(`${environment.apiUrl}/metric/lob/${lob}/type/${type}/product/${productId}/summary`)
+        return this.http.get<BuildingBlockMetricSummary>(`${environment.apiUrl}/metric/lob/${lob}/type/${type}/product/${productId}/summary`)
+            .map((response) => response)
+            .catch((error) => {
+                console.log(error);
+                return Observable.throw(error);
+            });
+    }
+
+    getLobProductDetails(lob : string ,type : string, productId : string): Observable<BuildingBlockMetricSummary[]>{
+        return this.http.get<MetricDetail>(`${environment.apiUrl}/metric/lob/${lob}/type/${type}/product/${productId}/details`)
             .map((response) => response)
             .catch((error) => {
                 console.log(error);
