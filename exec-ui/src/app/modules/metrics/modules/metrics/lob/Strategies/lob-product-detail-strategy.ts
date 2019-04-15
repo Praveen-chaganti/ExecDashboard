@@ -17,10 +17,10 @@ export class LobProductDetailStrategy implements Strategy<MetricSummary, MetricV
         let result = [];
 
         if(sums.get('TEST_RESULT')){
-            result.push({name : 'FeatureTest', value : sums.get('TEST_RESULT')});
+            result.push({name : 'Feature Test', value : sums.get('TEST_RESULT')});
         }
         if(sums.get('STATIC_SECURITY_ANALYSIS')){
-            result.push({name : 'SSA', value : sums.get('STATIC_SECURITY_ANALYSIS')});
+            result.push({name : 'AppSec', value : sums.get('STATIC_SECURITY_ANALYSIS')});
         }
         if(sums.get('LIBRARY_POLICY')){
             result.push({name : 'OSS', value : sums.get('LIBRARY_POLICY')});

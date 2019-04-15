@@ -17,22 +17,22 @@ export class LobAuxiliaryFigureStrategy implements Strategy<MetricSummary, Metri
       let result = [];
 
       if(sums.get('TEST_RESULT')){
-        result.push({name : 'TEST_RESULT', value : sums.get('TEST_RESULT').toLocaleString()});
+        result.push({name : 'Feature Test', value : sums.get('TEST_RESULT').toLocaleString()});
       }
       if(sums.get('STATIC_SECURITY_ANALYSIS')){
-          result.push({name : 'STATIC_SECURITY_ANALYSIS', value : sums.get('STATIC_SECURITY_ANALYSIS').toLocaleString()});
+          result.push({name : 'AppSec', value : sums.get('STATIC_SECURITY_ANALYSIS').toLocaleString()});
       }
       if(sums.get('LIBRARY_POLICY')){
-          result.push({name : 'LIBRARY_POLICY', value : sums.get('LIBRARY_POLICY').toLocaleString()});
+          result.push({name : 'OSS', value : sums.get('LIBRARY_POLICY').toLocaleString()});
       }
       if(sums.get('CODE_QUALITY')){
-          result.push({name : 'CODE_QUALITY', value : sums.get('CODE_QUALITY').toLocaleString()});
+          result.push({name : 'SCA', value : sums.get('CODE_QUALITY').toLocaleString()});
       }
       if(sums.get('CODE_REVIEW')){
-          result.push({name : 'CODE_REVIEW', value : sums.get('CODE_REVIEW').toLocaleString()});
+          result.push({name : 'Peer Review', value : sums.get('CODE_REVIEW').toLocaleString()});
       }
       if(sums.get('PERF_TEST')){
-          result.push({name : 'PERF_TEST', value : sums.get('PERF_TEST').toLocaleString()});
+          result.push({name : 'PT', value : sums.get('PERF_TEST').toLocaleString()});
       }
       return result;
   }
