@@ -27,6 +27,7 @@
     "@angular/router": "^4.4.7",
     "angular2-fontawesome": "~5.2.0",
     "angular2-multiselect-dropdown": "^4.2.1",
+    "chart.js": "^2.8.0",
     "core-js": "^2.6.5",
     "d3": "^3.5.17",
     "element-resize-detector": "^1.2.0",

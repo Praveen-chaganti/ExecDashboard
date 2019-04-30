@@ -13,6 +13,7 @@ import {MetricMapService} from './services/metric-map.service';
 import {BuildingBlockComponent} from './components/building-block/building-block.component';
 import {BuildingBlocksComponent} from './components/building-blocks/building-blocks.component';
 import {BuildingBlockMetricNamePipe} from './components/building-block/building-block-metric-name.pipe';
+import { EngxGraphComponent } from './components/engx-graph/engx-graph.component';
 @NgModule({
   imports: [
     FlexLayoutModule,
@@ -29,7 +30,8 @@ import {BuildingBlockMetricNamePipe} from './components/building-block/building-
     MetricAuxiliaryFigureComponent,
     TotalReportingComponent,
     TotalReportingPipe,
-    TotalReportingPercentPipe
+    TotalReportingPercentPipe,
+    EngxGraphComponent
   ],
   exports: [
     BuildingBlockComponent,
@@ -41,7 +43,8 @@ import {BuildingBlockMetricNamePipe} from './components/building-block/building-
     MetricAuxiliaryFigureComponent,
     TotalReportingComponent,
     TotalReportingPipe,
-    TotalReportingPercentPipe
+    TotalReportingPercentPipe,
+    EngxGraphComponent
   ],
   providers: [
     MetricMapService

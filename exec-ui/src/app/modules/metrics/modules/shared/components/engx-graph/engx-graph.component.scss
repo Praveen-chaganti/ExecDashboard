@@ -1,0 +1,17 @@
+.metric-graph-container {
+  background-color: rgba(2, 24, 41, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  cursor: pointer;
+  height: 320px;
+  margin-bottom: 15px;
+  margin-right: 10px;
+  min-width: 260px;
+  padding: 25px 30px 20px 10px;
+}
+.active-count{
+  font-size: 15.5px;
+  letter-spacing: 0.1em;
+  padding-left: 31px;
+  width: 100%;
+}

@@ -21,7 +21,7 @@ export class LobComponentGrphStrategy extends GraphStrategyBase{
         metricGraph.isRatio = false;
         metricGraph.trend = this.trendStrategy.parse(model.summary);
         metricGraph.score = null;
-        metricGraph.valueLabel = 'CODE_REVIEW';
+        metricGraph.valueLabel = 'PEER_REVIEW';
         metricGraph.toolTipLabel = x => x === 1 ? '1 issue' : x.toLocaleString() + ' AuditOk';
         return metricGraph;
     }
