@@ -13,6 +13,9 @@ import {nsend} from "q";
 import {MetricDetailModel} from "../../../../shared/component-models/metric-detail-model";
 import {LobBuildingBlocksMapStrategy} from "../../../strategies/lob-building-blocks-map-strategy";
 import {TitleCasePipe} from "@angular/common";
+import {MetricDetail} from "../../../../shared/domain-models/metric-detail";
+import {MetricGraphModel} from "../../../../shared/component-models/metric-graph-model";
+import {LobComponentGrphStrategy} from "../../../../metrics/lob/Strategies/lob-component-grph-strategy";
 
 @Component({
     selector: 'app-engg_maturity_dashboard',
@@ -35,6 +38,7 @@ export class Engg_maturity_dashboardComponent implements OnInit {
     public productId: string;
     public buildingBlocks: BuildingBlockModel[];
     public metricDetailView: MetricDetailModel;
+    public metricGraphModel: MetricGraphModel
     public showBuildingBlocks: boolean=true;
 
     private metricToBuildingBlocksMap = new Map<string, BuildingBlockModel[]>();
@@ -46,6 +50,7 @@ export class Engg_maturity_dashboardComponent implements OnInit {
                 private productService: ProductService,
                 private metricBuildingBlocksMapStrategy: MetricBuildingBlocksMapStrategy,
                 private lobBuildingBlockStrategy: LobBuildingBlocksMapStrategy,
+                private lobGraphStrategy : LobComponentGrphStrategy,
                 private titlecasePipe: TitleCasePipe) {
     }
 
@@ -64,6 +69,21 @@ export class Engg_maturity_dashboardComponent implements OnInit {
                     this.metricToBuildingBlocksMap = this.lobBuildingBlockStrategy.parse(result);
                     // TODO: need to filter based on the LOB name
                     this.buildingBlocks = this.metricToBuildingBlocksMap.get('auditResult');
+
+                    this.hModelEnggMat = this.getHeadingModel();
+                },
+                error => console.log(error)
+            );
+
+        this.productService.getLobProductDetails(this.titlecasePipe.transform(this.lobName),'AUDITRESULT','CI286438')
+            .subscribe(
+                result => {
+                    const metricDetail = new MetricDetail();
+                    metricDetail.summary = result['summary'];
+                    metricDetail.timeSeries = result['timeSeries'];
+                    this.metricGraphModel = this.lobGraphStrategy.parse(metricDetail);
+                    console.log(this.metricDetailView)
+
 
                     this.hModelEnggMat = this.getHeadingModel();
                 },

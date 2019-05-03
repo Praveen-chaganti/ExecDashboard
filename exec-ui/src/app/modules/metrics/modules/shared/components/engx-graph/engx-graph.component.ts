@@ -28,8 +28,8 @@ export class EngxGraphComponent implements OnInit,OnChanges {
         console.log(d.toString());
 
         let weatherDates =[];
-        var i;
-        for(i = 0; i<90 ;i++){
+
+        for( var i = 0; i<90 ;i++){
 
             weatherDates.push(i)
 
@@ -57,6 +57,9 @@ export class EngxGraphComponent implements OnInit,OnChanges {
                         borderColor: "#7ED321",
                         backgroundColor:"#7ED321",
                         borderWidth:1,
+                        pointStyle: 'star',
+                        pointRadius: 2,
+                        pointBorderColor: '#7ED321',
                         fill: false
                     },
                     {
@@ -65,6 +68,9 @@ export class EngxGraphComponent implements OnInit,OnChanges {
                         borderColor: "#2d49ff",
                         backgroundColor:"#2d49ff",
                         borderWidth:1,
+                        pointStyle: 'star',
+                        pointRadius: 2,
+                        pointBorderColor: '#2d49ff',
                         fill: false
                     },
                 ]
@@ -73,7 +79,13 @@ export class EngxGraphComponent implements OnInit,OnChanges {
                 legend: {
                     display: true,
                     usePointStyle:false,
-                    position: 'right'
+                    position: 'right',
+                    labels: {
+                        fontFamily: "Comic Sans MS",
+                        boxWidth: 10,
+                        boxHeight: 2
+                    },
+                    pointStyle:'cross'
                 },
 
                 title: {
@@ -88,18 +100,20 @@ export class EngxGraphComponent implements OnInit,OnChanges {
                     // Disable the on-canvas tooltip
                     enabled: true,
                 },
-                    scales: {
+                scales: {
                     xAxes: [{
                         ticks:{
                             autoSkip:true,
-                            maxTicksLimit: 10
+                            minRotation:50,
+                            maxTicksLimit:4
                         },
                         display: true,
                         distribution:'linear',
                         scaleLabel: {
                             display: true,
-                            labelString: 'Days ago',
-                            fontSize:20
+                            //labelString: 'Days ago',
+                            fontSize:20,
+                            paddingTop:4
                         }
 
                     }],
