@@ -66,7 +66,7 @@ public class RollupMetricDetail extends MetricDetails {
             List<MetricCount> itemTimeSeriesElementCounts = itemDetailsTimeSeriesElement.getCounts();
             for (MetricCount itemCount : itemTimeSeriesElementCounts) {
                 if(itemMetricDetails.getType().getDataType().equals(MetricType.DataType.SUM)) {
-                    timeSeries.get(itemDetailsTimeSeriesElement.getDaysAgo()).addCount(itemCount);
+                    timeSeries.get(itemDetailsTimeSeriesElement.getDaysAgo()).addCount(itemCount,itemMetricDetails);
                 } else {
                     timeSeries.get(itemDetailsTimeSeriesElement.getDaysAgo()).averageCount(itemCount,size);
                 }

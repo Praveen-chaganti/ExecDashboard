@@ -1,8 +1,9 @@
 package com.capitalone.dashboard.exec.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 public class MetricTimeSeriesElement {
     private int daysAgo;
@@ -23,24 +24,39 @@ public class MetricTimeSeriesElement {
         this.timestamp = timestamp;
     }
 
-    public void addCount(MetricCount count) {
+    public void addCount(MetricCount count,MetricDetails itemMetricDetails) {
         if (counts == null) {
             counts = new ArrayList<>();
         }
-        MetricCount oCount = getMetricCountByLabel(count.getLabel());
-        MetricCount copyCount = count.copy();
+        MetricCount oCount = getMetricCountByLabel(count.getLabel().get("type"));
+        MetricCount copyCount = getCopyCount(count,itemMetricDetails);
         if (oCount != null) {
             counts.remove(oCount);
             copyCount.addValue(oCount.getValue());
         }
         counts.add(copyCount);
     }
+    private MetricCount getCopyCount(MetricCount count, MetricDetails metricDetails){
+        MetricCount copyCount;
+        if(metricDetails.getType().equals(MetricType.AUDITRESULT)){
+            MetricCount copyCount1 = new MetricCount();
+            HashMap<String,String> label = new HashMap<>();
+            label.put("type", count.getLabel().get("type"));
+            double val = count.getValue();
+            copyCount1.setLabel(label);
+            copyCount1.setValue(val);
+            copyCount = copyCount1.copy();
+        }else {
+            copyCount = count.copy();
+        }
+        return copyCount;
+    }
 
     public void averageCount(MetricCount count,int size) {
         if (counts == null) {
             counts = new ArrayList<>();
         }
-        MetricCount oCount = getMetricCountByLabel(count.getLabel());
+        MetricCount oCount = getMetricCountByLabel(count.getLabel().get("type"));
         MetricCount copyCount = count.copy();
         if (oCount != null) {
             counts.remove(oCount);
@@ -49,7 +65,20 @@ public class MetricTimeSeriesElement {
         counts.add(copyCount);
     }
 
-    public MetricCount getMetricCountByLabel (Map<String, String> label) {
-        return counts.stream().filter(c -> c.getLabel().equals(label)).findFirst().orElse(null);
+    public MetricCount getMetricCountByLabel (String label) {
+        return counts.stream().filter(c -> c.getLabel().get("type").equals(label)).findFirst().orElse(null);
+    }
+
+    public void addCount(MetricCount metricCount) {
+        if (counts == null) {
+            counts = new ArrayList<>();
+        }
+        MetricCount oCount = getMetricCountByLabel(metricCount.getLabel().get("type"));
+        MetricCount copyCount = metricCount.copy();
+        if (oCount != null) {
+            counts.remove(oCount);
+            copyCount.addValue(oCount.getValue());
+        }
+        counts.add(copyCount);
     }
 }
