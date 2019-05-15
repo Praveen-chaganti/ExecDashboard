@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import  {Chart} from "chart.js"
 import {MetricGraphModel} from "../../component-models/metric-graph-model";
+import {LobGraphModel} from "../../component-models/lob-graph-model";
 
 @Component({
   selector: 'app-engx-graph',
@@ -8,7 +9,7 @@ import {MetricGraphModel} from "../../component-models/metric-graph-model";
   styleUrls: ['./engx-graph.component.scss']
 })
 export class EngxGraphComponent implements OnInit,OnChanges {
-    @Input() public model: MetricGraphModel;
+    @Input() public model: LobGraphModel;
 
 
     chart = [];
@@ -30,19 +31,26 @@ export class EngxGraphComponent implements OnInit,OnChanges {
         let weatherDates =[];
 
         for( var i = 0; i<90 ;i++){
-
-            weatherDates.push(i)
-
+            var d = new Date();
+            d.setDate(d.getDate() - i);
+            var month = d.getUTCMonth() + 1;
+            var day = d.getUTCDate();
+            var newDate = month + "/" + day;
+            weatherDates.push(newDate)
         }
         let RweatherDates = weatherDates.reverse();
+        console.log(this.model.values.get("CODE_REVIEW").reverse())
 
-        let sca = this.model.values.reverse();
-        let SSA = [1, 0, 5, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-        let RSSA = SSA.reverse();
+        let Peer_Review = this.model.values.get("CODE_REVIEW").reverse();
+        let SCA = this.model.values.get("CODE_QUALITY").reverse()
+        let FEATURE_TEST = this.model.values.get("TEST_RESULT").reverse()
+        let APPSEC = this.model.values.get("STATIC_SECURITY_ANALYSIS").reverse()
+        let OSS = this.model.values.get("LIBRARY_POLICY").reverse()
+        let PT = this.model.values.get("PERF_TEST").reverse();
         let graphData;
-        if (sca !== undefined) {
+        if (Peer_Review !== undefined) {
             graphData = [
-                ...sca.slice(0, 89).map((x, i) => ({daysAgo: i, issues: x}))
+                ...Peer_Review.slice(0, 89).map((x, i) => ({daysAgo: i, issues: x}))
             ];
         }
         console.log(graphData)
@@ -52,9 +60,10 @@ export class EngxGraphComponent implements OnInit,OnChanges {
                 labels: RweatherDates,
                 datasets: [
                     {
-                        data: sca,
-                        label: "SCA",
+                        data: Peer_Review,
+                        label: "Peer_Review",
                         borderColor: "#7ED321",
+                        fontColor:"#FFFFFF",
                         backgroundColor:"#7ED321",
                         borderWidth:1,
                         pointStyle: 'star',
@@ -63,14 +72,63 @@ export class EngxGraphComponent implements OnInit,OnChanges {
                         fill: false
                     },
                     {
-                        data: RSSA,
-                        label:"SSA",
+                        data: SCA,
+                        label: "SCA",
+                        borderColor: "#d32451",
+                        fontColor:"#FFFFFF",
+                        backgroundColor:"#d3306b",
+                        borderWidth:1,
+                        pointStyle: 'star',
+                        pointRadius: 2,
+                        pointBorderColor: '#d31e48',
+                        fill: false
+                    },
+                    {
+                        data: FEATURE_TEST,
+                        label: "Feature_Test",
+                        borderColor: "#feff0e",
+                        fontColor:"#FFFFFF",
+                        backgroundColor:"#feff0e",
+                        borderWidth:1,
+                        pointStyle: 'star',
+                        pointRadius: 2,
+                        pointBorderColor: '#feff0e',
+                        fill: false
+                    },
+                    {
+                        data: PT,
+                        label: "PT",
+                        borderColor: "#ef24ff",
+                        fontColor:"#FFFFFF",
+                        backgroundColor:"#ef24ff",
+                        borderWidth:1,
+                        pointStyle: 'star',
+                        pointRadius: 2,
+                        pointBorderColor: '#ef24ff',
+                        fill: false
+                    },
+                    {
+                        data: APPSEC,
+                        label:"APPSEC",
                         borderColor: "#2d49ff",
                         backgroundColor:"#2d49ff",
+                        fontColor:"#FFFFFF",
                         borderWidth:1,
                         pointStyle: 'star',
                         pointRadius: 2,
                         pointBorderColor: '#2d49ff',
+                        fill: false
+                    },
+                    {
+                        data: OSS,
+                        label:"OSS",
+                        borderColor: "#13ffa2",
+                        backgroundColor:"#13ffa2",
+                        fontColor:"#FFFFFF",
+                        borderWidth:1,
+                        pointStyle: 'star',
+                        pointRadius: 2,
+                        pointBorderColor: '#13ffa2',
                         fill: false
                     },
                 ]
@@ -82,6 +140,7 @@ export class EngxGraphComponent implements OnInit,OnChanges {
                     position: 'right',
                     labels: {
                         fontFamily: "Comic Sans MS",
+                        fontColor:"#FFFFFF",
                         boxWidth: 10,
                         boxHeight: 2
                     },
@@ -89,12 +148,10 @@ export class EngxGraphComponent implements OnInit,OnChanges {
                 },
 
                 title: {
-                    display: true,
-                    fontColor:"$white",
+                    fontColor:"#FFFFFF",
                     position:'top',
                     marginRight:'6px',
-                    fontSize: 20,
-                    text: 'MEASURABLE QUALITY CHECKS'
+                    fontSize: 18,
                 },
                 tooltips: {
                     // Disable the on-canvas tooltip
@@ -104,11 +161,14 @@ export class EngxGraphComponent implements OnInit,OnChanges {
                     xAxes: [{
                         ticks:{
                             autoSkip:true,
-                            minRotation:50,
-                            maxTicksLimit:4
+                            minRotation:40,
+                            maxTicksLimit:4,
+                            isAvoidFirstLastClippingEnabled:true
+
                         },
                         display: true,
                         distribution:'linear',
+
                         scaleLabel: {
                             display: true,
                             //labelString: 'Days ago',
@@ -120,7 +180,6 @@ export class EngxGraphComponent implements OnInit,OnChanges {
                     yAxes: [{
                         ticks:{
                             beginAtZero: true,
-                            reverse:false,
                             userCallback: function(label, index, labels) {
                                 if (Math.floor(label) === label) {
                                     return label;
@@ -132,17 +191,18 @@ export class EngxGraphComponent implements OnInit,OnChanges {
                         scaleLabel: {
                             display: true,
                             labelString: 'Number of AuditOk',
-                            fontSize:20
+                            fontColor:"#FFFFFF",
+                            fontSize:18
                         },
 
                     }],
                 },
                 layout: {
                     padding: {
-                        left: 0,
-                        right: 0,
-                        top: 0,
-                        bottom: 0
+                        left: 25,
+                        right: 30,
+                        top: 20,
+                        bottom: 10
                     }
                 }
             }

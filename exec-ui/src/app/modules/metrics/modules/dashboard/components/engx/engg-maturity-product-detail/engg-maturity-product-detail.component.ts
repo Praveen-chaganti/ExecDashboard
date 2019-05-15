@@ -12,6 +12,7 @@ import {LobComponentBuildingBlocksMapStrategy} from "../../../strategies/lob-com
 import {LobComponentGrphStrategy} from "../../../../metrics/lob/Strategies/lob-component-grph-strategy";
 import {MetricDetail} from "../../../../shared/domain-models/metric-detail";
 import {MetricGraphModel} from "../../../../shared/component-models/metric-graph-model";
+import {LobGraphModel} from "../../../../shared/component-models/lob-graph-model";
 
 @Component({
   selector: 'app-engg-maturity-product-detail',
@@ -32,7 +33,7 @@ export class EnggMaturityProductDetailComponent implements OnInit {
     public productId: string;
     public buildingBlocks: BuildingBlockModel[];
     public metricDetailView: MetricDetailModel;
-    public metricGraphModel: MetricGraphModel
+    public lobGraphModel: LobGraphModel;
     public showBuildingBlocks: boolean=true;
 
     private metricToBuildingBlocksMap = new Map<string, BuildingBlockModel[]>();
@@ -74,8 +75,7 @@ export class EnggMaturityProductDetailComponent implements OnInit {
                     const metricDetail = new MetricDetail();
                     metricDetail.summary = result['summary'];
                     metricDetail.timeSeries = result['timeSeries'];
-                    this.metricGraphModel = this.lobGraphStrategy.parse(metricDetail);
-                    console.log(this.metricDetailView)
+                    this.lobGraphModel = this.lobGraphStrategy.parse1(metricDetail);
 
 
                     this.hModelEnggMat = this.getHeadingModel();

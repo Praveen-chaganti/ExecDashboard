@@ -16,6 +16,7 @@ import {TitleCasePipe} from "@angular/common";
 import {MetricDetail} from "../../../../shared/domain-models/metric-detail";
 import {MetricGraphModel} from "../../../../shared/component-models/metric-graph-model";
 import {LobComponentGrphStrategy} from "../../../../metrics/lob/Strategies/lob-component-grph-strategy";
+import {LobGraphModel} from "../../../../shared/component-models/lob-graph-model";
 
 @Component({
     selector: 'app-engg_maturity_dashboard',
@@ -38,7 +39,7 @@ export class Engg_maturity_dashboardComponent implements OnInit {
     public productId: string;
     public buildingBlocks: BuildingBlockModel[];
     public metricDetailView: MetricDetailModel;
-    public metricGraphModel: MetricGraphModel
+    public lobGraphModel: LobGraphModel;
     public showBuildingBlocks: boolean=true;
 
     private metricToBuildingBlocksMap = new Map<string, BuildingBlockModel[]>();
@@ -81,7 +82,7 @@ export class Engg_maturity_dashboardComponent implements OnInit {
                     const metricDetail = new MetricDetail();
                     metricDetail.summary = result['summary'];
                     metricDetail.timeSeries = result['timeSeries'];
-                    this.metricGraphModel = this.lobGraphStrategy.parse(metricDetail);
+                    this.lobGraphModel = this.lobGraphStrategy.parse1(metricDetail);
                     console.log(this.metricDetailView)
 
 

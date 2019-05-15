@@ -7,11 +7,24 @@
   margin-bottom: 15px;
   margin-right: 10px;
   min-width: 260px;
-  padding: 25px 30px 20px 10px;
+  padding: 25px 10px 20px 10px;
 }
 .active-count{
   font-size: 15.5px;
   letter-spacing: 0.1em;
   padding-left: 31px;
   width: 100%;
+  span {
+    font-size: 10px;
+    letter-spacing: 0.02em;
+    padding-right: 2px;
+    width: 37px;
+    &.graph-title {
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      margin-right: 6px;
+      padding-right: 0;
+    }
+
+  }
 }

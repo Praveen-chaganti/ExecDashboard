@@ -58,12 +58,10 @@ export class LobBuildingBlocksMapStrategy implements Strategy<BuildingBlockMetri
         }
 
         const auxmetric = this.lobAuxilaryStrategy.parse(metric);
-        console.log(auxmetric)
         let result = [];
         auxmetric.forEach(value => {
             result.push(mapTestResultMetric(value))
         })
-        console.log(result)
 
         return result
 
