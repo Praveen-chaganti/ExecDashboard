@@ -7,7 +7,7 @@ export class LobGraphModel {
     values: Map<string,number[]>;
     lastScanned: string;
     trend: MetricTrendModel;
-    valueLabel: string;
+    valueLabel: string[];
     toolTipLabel: (number) => string;
     additionalValues: { totalCount: number, item: string}[];
 }

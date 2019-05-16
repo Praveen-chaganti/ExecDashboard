@@ -42,7 +42,7 @@ export class LobComponentGrphStrategy{
         lobGraph.isRatio = false;
         lobGraph.trend = this.trendStrategy.parse(model.summary);
         lobGraph.score = null;
-        lobGraph.valueLabel = 'MEASURABLE QUALITY CHECKS';
+        lobGraph.valueLabel = ['MEASURABLE QUALITY CHECKS','MEASURABLE SECURITY & LICENSING CHECKS'];
         lobGraph.toolTipLabel = x => x === 1 ? '1 issue' : x.toLocaleString() + ' AuditOk';
         return lobGraph;
 
