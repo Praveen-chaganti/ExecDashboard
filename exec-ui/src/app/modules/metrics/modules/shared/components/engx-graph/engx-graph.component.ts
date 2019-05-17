@@ -34,18 +34,6 @@ export class EngxGraphComponent implements OnInit,OnChanges {
         if(value === "MEASURABLE QUALITY CHECKS"){
             let dataset = [
                 {
-                    data: this.model.values.get("CODE_REVIEW").reverse(),
-                    label: "Peer_Review",
-                    borderColor: "#7ED321",
-                    fontColor:"#FFFFFF",
-                    backgroundColor:"#7ED321",
-                    borderWidth:1,
-                    pointStyle: 'star',
-                    pointRadius: 2,
-                    pointBorderColor: '#7ED321',
-                    fill: false
-                },
-                {
                     data: this.model.values.get("CODE_QUALITY").reverse(),
                     label: "SCA",
                     borderColor: "#d32451",
@@ -83,7 +71,23 @@ export class EngxGraphComponent implements OnInit,OnChanges {
                 }
             ]
             return dataset;
-        }else{
+        }else if(value === 'MEASURABLE SOURCE CONTROL'){
+            let dataset = [
+                {
+                    data: this.model.values.get("CODE_REVIEW").reverse(),
+                    label: "Peer_Review",
+                    borderColor: "#7ED321",
+                    fontColor:"#FFFFFF",
+                    backgroundColor:"#7ED321",
+                    borderWidth:1,
+                    pointStyle: 'star',
+                    pointRadius: 2,
+                    pointBorderColor: '#7ED321',
+                    fill: false
+                }
+            ]
+            return dataset;
+        } else {
             let dataset =[
                 {
                     data: this.model.values.get("STATIC_SECURITY_ANALYSIS").reverse(),

@@ -23,6 +23,18 @@
       <canvas id="MEASURABLE SECURITY & LICENSING CHECKS" width="800" height="325">{{ chart }}</canvas>
     </div>
   </div>
+  <div [hidden]="!chart" class="metric-graph-container" >
+
+    <div *ngIf="model" class="graph-contents">
+      <div class="active-count">
+        <app-metric-trend-indicator [trend]="model.trend"></app-metric-trend-indicator>
+
+        <span class="graph-title">{{'MEASURABLE SOURCE CONTROL'}}</span>
+        <span class="last-scanned">{{this.model.lastScanned}}</span>
+      </div>
+      <canvas id="MEASURABLE SOURCE CONTROL" width="800" height="325">{{ chart }}</canvas>
+    </div>
+  </div>
 </div>
 
 
