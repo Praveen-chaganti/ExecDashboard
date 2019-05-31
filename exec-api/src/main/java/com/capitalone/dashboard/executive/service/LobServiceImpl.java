@@ -1,6 +1,7 @@
 package com.capitalone.dashboard.executive.service;
 
 import com.capitalone.dashboard.exec.model.*;
+import com.capitalone.dashboard.exec.repository.LobMetricRepository;
 import com.capitalone.dashboard.exec.repository.PortfolioMetricRepository;
 import com.capitalone.dashboard.executive.model.LobProductResponse;
 import com.capitalone.dashboard.executive.model.LobResponse;
@@ -15,10 +16,13 @@ public class LobServiceImpl implements LobService {
 
     private final PortfolioMetricRepository portfolioMetricRepository;
 
+    private final LobMetricRepository lobMetricRepository;
+
 
     @Autowired
-    public LobServiceImpl(PortfolioMetricRepository portfolioMetricRepository) {
+    public LobServiceImpl(PortfolioMetricRepository portfolioMetricRepository, LobMetricRepository lobMetricRepository) {
         this.portfolioMetricRepository = portfolioMetricRepository;
+        this.lobMetricRepository = lobMetricRepository;
     }
 
     /**
@@ -36,6 +40,7 @@ public class LobServiceImpl implements LobService {
 
         List<LobProductResponse> lobLevelProductMetrics = new ArrayList<>();
         List<PortfolioMetricDetail> lobMetrics = portfolioMetricRepository.findAllByLobAndType(lob,type );
+        //List<PortfolioMetricDetail> lobMetrics = lobMetricRepository.findAllByLobAndType(lob,type );
 
         Optional.ofNullable(lobMetrics).orElseGet(Collections::emptyList)
                 .stream().forEach(portfolioMetricDetail -> {portfolioMetricDetail.getProductMetricDetailList()
@@ -57,6 +62,7 @@ public class LobServiceImpl implements LobService {
     @Override
     public LobProductResponse getProductByLobAndProductName(String lob,MetricType type, String name) {
         List<LobProductResponse> lobProductResponse = new ArrayList<>();
+        //List<PortfolioMetricDetail> lobMetrics = lobMetricRepository.findAllByLobAndType(lob,type );
         List<PortfolioMetricDetail> lobMetrics = portfolioMetricRepository.findAllByLobAndType(lob,type );
         Optional.ofNullable(lobMetrics).orElseGet(Collections::emptyList)
                 .stream().forEach(portfolioMetricDetail -> {portfolioMetricDetail.getProductMetricDetailList()
@@ -81,6 +87,7 @@ public class LobServiceImpl implements LobService {
     public List<LobProductResponse> getProductByLobAndProductNameAndLabelType(String lob, MetricType type, String labelType) {
 
         List<LobProductResponse> lobLevelProductMetrics = new ArrayList<>();
+        //List<PortfolioMetricDetail> lobMetrics = lobMetricRepository.findAllByLobAndType(lob,type );
         List<PortfolioMetricDetail> lobMetrics = portfolioMetricRepository.findAllByLobAndType(lob,type );
 
         Optional.ofNullable(lobMetrics).orElseGet(Collections::emptyList)
@@ -106,7 +113,7 @@ public class LobServiceImpl implements LobService {
 
         List<Integer> totalComponents = new ArrayList<>();
         List<Integer> totalReportingComponents = new ArrayList<>();
-
+        //List<PortfolioMetricDetail> lobMetrics = lobMetricRepository.findAllByLobAndType(lob,type );
         List<PortfolioMetricDetail> lobMetrics = portfolioMetricRepository.findAllByLobAndType(lob,type );
         List<MetricCount> metricCounts = new ArrayList<>();
 
@@ -129,6 +136,8 @@ public class LobServiceImpl implements LobService {
     @Override
     public MetricDetails getProductMetricDetails(String lob, MetricType type, String name) {
         List<PortfolioMetricDetail> lobMetrics = portfolioMetricRepository.findAllByLobAndType(lob,type );
+
+        // List<PortfolioMetricDetail> lobMetrics = lobMetricRepository.findAllByLobAndType(lob,type );
         List<ProductMetricDetail> productMetricDetailList = new ArrayList<>();
 
 

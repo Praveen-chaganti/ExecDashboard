@@ -172,9 +172,9 @@ export class EngxGraphComponent implements OnInit,OnChanges {
                     xAxes: [{
                         ticks:{
                             autoSkip:true,
-                            minRotation:40,
+                            minRotation:30,
                             maxTicksLimit:4,
-                            isAvoidFirstLastClippingEnabled:true
+                            isAvoidFirstLastClippingEnabled:false
 
                         },
                         display: true,
@@ -200,7 +200,7 @@ export class EngxGraphComponent implements OnInit,OnChanges {
                         },
                         display: true,
                         scaleLabel: {
-                            display: true,
+                            display: false,
                             labelString: 'Number of AuditOk',
                             fontColor:"#FFFFFF",
                             fontSize:18
