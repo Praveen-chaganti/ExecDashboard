@@ -30,10 +30,11 @@ export class MetricPreviewsComponent implements OnInit, OnDestroy {
   private shuffleInstanceTimerId;
 
   public sortMap = new Map<string, any>([
-    [OpenSourceViolationsConfiguration.identifier, {
+    [SCMCommitsConfiguration.identifier, {
       defaultSort: 1,
       currentSort: 1
-    }],
+}],
+
     [SecurityViolationsConfiguration.identifier, {
       defaultSort: 2,
       currentSort: 2
@@ -62,7 +63,7 @@ export class MetricPreviewsComponent implements OnInit, OnDestroy {
       defaultSort: 8,
       currentSort: 8
     }],
-    [SCMCommitsConfiguration.identifier, {
+    [OpenSourceViolationsConfiguration.identifier, {
       defaultSort: 9,
       currentSort: 9
     }],
@@ -70,10 +71,10 @@ export class MetricPreviewsComponent implements OnInit, OnDestroy {
       defaultSort:10,
       currentSort: 10
     }],
-      [PerformanceTestConfiguration.identifier, {
-        defaultSort:11,
-        currentSort: 11
-      }],
+    [PerformanceTestConfiguration.identifier, {
+      defaultSort:11,
+      currentSort: 11
+    }],
   ]);
 
   constructor() {}
